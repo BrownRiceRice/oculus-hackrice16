@@ -1,0 +1,92 @@
+﻿  OculusWorldDemo_Scene.cpp
+  OculusWorldDemo.vcxproj -> C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Bin\Windows\Win32\Debug\VS2015\OculusWorldDemo.exe
+  OculusWorldDemo.vcxproj -> C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Bin\Windows\Win32\Debug\VS2015\OculusWorldDemo.pdb (Full PDB)
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Bark.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Barrel.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Bench.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Book.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Chair1.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Chair2.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\ChimneyBrick.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Concrete1.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Concrete2.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Distance Tree.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Distance1_c.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Distance2_c.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Distance3_c.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\FireWood.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Floor.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Fountain.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\HouseBack.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\HouseFront.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\HouseLeft.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\HouseRight.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\house_exteriorLightingMap.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\House_InteriorLightingMap.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Hutch.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\InteriorLeft.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\IntertiorBack.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\IntertiorFront.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Iron.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Leaves.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\LeftController.xml
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\MetalRusty.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\MossConcrete.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Ocean.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Picture1.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Picture2.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Picture3.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Props_ExteriorLightingMap.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Props_InteriorLightingMap.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Rocks.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\RoofShingles.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Shutter.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Sky0_c.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Sky1_c.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Sky2_c.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Sky3_c.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Sky4_c.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Spore.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\StoneWall.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Table1.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Table2.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Terrain Ground1.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Terrain Ground2.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Terrain Ground3.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Terrain_DistanceLightingMap.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Terrain_YardLightingMap.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Terrain_YardLightingMap_c.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\TreeSkinny.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Tree_ TallLightingMap.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\tree_A01LightingMap.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\tree_A02LightingMap.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\tree_A03LightingMap.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\tree_BLightingMap.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\tree_CLightingMap.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Tuscany.xml
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Tuscany_Cockpit_Panel.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Tuscany_Cockpit_Panel.tga
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Tuscany_greenCube.tga
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Tuscany_Grid.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Tuscany_LoadScreen.tga
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Tuscany_OculusCube.tga
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Tuscany_redCube.tga
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Tuscany_SitFloorConcrete.tga
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Tuscany_White.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Tuscany_yellowCube.tga
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Vase.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\VaseLightingMap.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Village Houses.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\VillageLightingMap.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Window.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\WoodPlanks.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\WoodPlanksSmall.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Yard1.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Yard2.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Yard3.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Yard_Patio1.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Yard_Patio2.dds
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Assets\Tuscany\Yard_Plain.dds
+  86 File(s) copied
+  C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\..\..\3rdParty\Windows Kits\8.1\Redist\D3D\x86\d3dcompiler_47.dll
+  1 File(s) copied

@@ -7,7 +7,7 @@
 namespace ParamWorld {
 	class TreeObject {
 	public:
-		std::vector<Ptr<Model>> Models;
+		Ptr<Model> ModelX;
 
 		TreeObject(Vector3f root, int depth, float height, float width, float scale, float angle, OVR::Color leafColor, OVR::Color trunkColor);
 

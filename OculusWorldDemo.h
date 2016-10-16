@@ -133,6 +133,8 @@ public:
 	// Our Player code
 	void		 PlayerFireCube();
 	void         AddMoreFloor(int x, int z);
+	void         AddMoreThings(float x, float y);
+	int currentTrees = 0;
 
     // Computes all of the Hmd values and configures render targets.
     ovrResult    CalculateHmdValues();

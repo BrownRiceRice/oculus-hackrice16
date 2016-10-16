@@ -2183,7 +2183,8 @@ void OculusWorldDemoApp::OnIdle()
 		// Draw more floor underneath you.
 		WriteLog("New grid");
 		Vector3f pos = ThePlayer.GetBodyPos(TrackingOriginType);
-		AddMoreFloor((int) pos.x, (int)pos.z);
+		//AddMoreFloor((int) pos.x, (int)pos.z);
+		AddMoreThings(pos.x, pos.z);
 	}
 
     // Find the pose of the player's torso (rather than their head) in the world.
@@ -2197,34 +2198,7 @@ void OculusWorldDemoApp::OnIdle()
 
     // This scene is so simple, it really doesn't stress the GPU or CPU out like a real game would.
     // So to simulate a more complex scene, each eye buffer can get rendered lots and lots of times.
-
-    int totalSceneRenderCount;
-    switch ( SceneRenderCountType )
-    {
-    case SceneRenderCount_FixedLow:
-        totalSceneRenderCount = SceneRenderCountLow;
-        break;
-    case SceneRenderCount_SineTenSec: {
-        float phase = (float)( fmod ( ovr_GetTimeInSeconds() * 0.1, 1.0 ) );
-        totalSceneRenderCount = (int)( 0.49f + SceneRenderCountLow + ( SceneRenderCountHigh - SceneRenderCountLow ) * 0.5f * ( 1.0f + sinf ( phase * 2.0f * MATH_FLOAT_PI ) ) );
-                                        } break;
-    case SceneRenderCount_SquareTenSec: {
-        float phase = (float)( fmod ( ovr_GetTimeInSeconds() * 0.1, 1.0 ) );
-        totalSceneRenderCount = ( phase > 0.5f ) ? SceneRenderCountLow : SceneRenderCountHigh;
-                                        } break;
-    case SceneRenderCount_Spikes: {
-        static int notRandom = 634785346;
-        notRandom *= 543585;
-        notRandom += 782353;
-        notRandom ^= notRandom >> 17;
-        // 0x1311 has 5 bits set = one frame in 32 on average. Simlates texture loading or other real-world mess.
-        totalSceneRenderCount = ( ( notRandom & 0x1311 ) == 0 ) ? SceneRenderCountHigh : SceneRenderCountLow;
-                                    } break;
-    default:
-         OVR_ASSERT ( false );
-         totalSceneRenderCount = SceneRenderCountLow;
-         break;
-    }
+    int totalSceneRenderCount = SceneRenderCountLow;
 
     ovrResult error = ovrSuccess;
 

@@ -216,6 +216,20 @@ void OculusWorldDemoApp::AddMoreFloor(int x, int z) {
 	MainScene.Models.push_back(model);
 }
 
+void OculusWorldDemoApp::AddMoreThings(float x, float z) {
+	WriteLog("Number of trees: %d", currentTrees);
+	const float radius = 10.0f;
+	int newThings = rand() % 3;
+	for (int i = 0; i < newThings; i++) {
+		float theta = (static_cast <float> (rand()) / static_cast <float> (RAND_MAX)) * MATH_FLOAT_PI * 2;
+		Vector3f rootPos = Vector3f(x, 0, z) + Quatf(Axis_Y, theta).Rotate(Vector3f(radius, 0, 0));
+		ParamWorld::TreeObject tree(rootPos, 3, 1.0f, .05f, .8f, MATH_FLOAT_PI / 4, Color(12, 240, 45), Color(240, 100, 100));
+		MainScene.World.Add(tree.ModelX);
+		MainScene.Models.push_back(tree.ModelX);
+	}
+	currentTrees += newThings;
+}
+
 // Loads the scene data
 void OculusWorldDemoApp::PopulateScene(const char *fileName)
 {
@@ -363,15 +377,10 @@ void OculusWorldDemoApp::PlayerFireCube()
 
 	// Add cube
 	model->AddBox(0xFFFFFFFF, Vector3f(8.0f, 1.0f, -2.0f), Vector3f(cubeSize, cubeSize, cubeSize), Quatf(Axis_Z, .5));
-	//model->AddTetra(Color(240, 1, 0), Vector3f(0, 4, 0), Vector3f(1, 0, 1.5), Vector3f(-1, 0, 1.5), Vector3f(0, 0, -1.5));
 
 	ParamWorld::TreeObject tree(Vector3f(0.0f, 0.0f, 0.0f), 5, 1.0f, .05f, .7f, MATH_FLOAT_PI / 4, Color(12, 240, 45), Color(240, 100, 100));
-	for (std::vector<Ptr<Model>>::iterator it = tree.Models.begin(); it != tree.Models.end(); it++) {
-		MainScene.World.Add(*it);
-		MainScene.Models.push_back(*it);
-	}
-
-	WriteLog("Hello!");
+	MainScene.World.Add(tree.ModelX);
+	MainScene.Models.push_back(tree.ModelX);
 }
 
 

@@ -133,9 +133,9 @@ public:
         BodyPoseFloorLevel = BodyPos;
         // floor level height is *always* ProfileStandingEyeHeight from BodyPos.y
         BodyPoseFloorLevel.y = BodyPos.y - (ProfileStandingEyeHeight * HeightScale);
-		Vector2i gridPos = Vector2i((int)BodyPos.x, (int)BodyPos.z);
+		Vector2i gridPos = Vector2i((int)BodyPos.x /2, (int)(BodyPos.z/2));
 		bool v = visited.find(gridPos) == visited.end();
-		visited.insert(Vector2i((int)BodyPos.x, (int)BodyPos.z));
+		visited.insert(gridPos);
 		return v;
     }
 

@@ -26,8 +26,10 @@ limitations under the License.
 #include "OculusWorldDemo.h"
 #include "Extras/OVR_Math.h"
 #include "TreeObject.h"
+#include "RockObject.h"
 #include <string>
 #include <iostream>
+#include <time.h>
 
 //-------------------------------------------------------------------------------------
 // ***** Scene Creation / Loading
@@ -193,19 +195,18 @@ void AddFloorCircleDonutModelVertices(Model* m, float radius)
 }
 
 void populateSky(Ptr<Model> sky, Vector3f origin, float dist) {
-	Color c(225, 255, 255);
+	Color c((rand() % (255 - 155)) + 155, (rand() % (255 - 155)) + 155, 255);
 	//float y = 100.0;
-	Vector3f size(0.5f, 0.5f, 0.5f);
+	Vector3f size(0.8f, 0.8f, 0.8f);
 	
-	for (int i = 0; i < 70; i++) {
+	for (int i = 0; i < 300; i++) {
 		float u = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
 		float v = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-		float theta = MATH_FLOAT_PI * u;
-		float phi = acos(2 * v - 1);
+		float theta = 2 * MATH_FLOAT_PI * u;
+		float phi = 2 * MATH_FLOAT_PI * v;
 		Vector3f pos = (Quatf(Axis_Y, phi) * Quatf(Axis_Z, -theta)).Rotate(origin - Vector3f(dist, 0, 0));
-		//float x = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / 200.0));
-		//float z = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / 200.0));
-		sky->AddBox(c, pos, size);
+		float x = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX));
+		sky->AddBox(c, pos,  size * x);
 	}
 }
 
@@ -216,16 +217,26 @@ void OculusWorldDemoApp::AddMoreFloor(int x, int z) {
 	MainScene.Models.push_back(model);
 }
 
-void OculusWorldDemoApp::AddMoreThings(float x, float z) {
+void OculusWorldDemoApp::AddMoreThings(float x, float z, Vector3f dirFacing) {
 	WriteLog("Number of trees: %d", currentTrees);
 	const float radius = 10.0f;
 	int newThings = rand() % 3;
 	for (int i = 0; i < newThings; i++) {
-		float theta = (static_cast <float> (rand()) / static_cast <float> (RAND_MAX)) * MATH_FLOAT_PI * 2;
-		Vector3f rootPos = Vector3f(x, 0, z) + Quatf(Axis_Y, theta).Rotate(Vector3f(radius, 0, 0));
-		ParamWorld::TreeObject tree(rootPos, 3, 1.0f, .05f, .8f, MATH_FLOAT_PI / 4, Color(12, 240, 45), Color(240, 100, 100));
-		MainScene.World.Add(tree.ModelX);
-		MainScene.Models.push_back(tree.ModelX);
+		float theta = ((static_cast <float> (rand()) / static_cast <float> (RAND_MAX)) * MATH_FLOAT_PI * .7f) - (MATH_FLOAT_PI * .35f); // wide FOV
+		Vector3f rootPos = Vector3f(x, 0, z) + Quatf(Axis_Y, theta).Rotate(dirFacing * radius);
+		if ((rand() % 2) == 0) {
+			ParamWorld::TreeObject tree(rootPos, 3, 1.0f, .05f, .8f, MATH_FLOAT_PI / 4, Color(12, 240, 45, 0), Color(240, 100, 100, 0));
+			MainScene.World.Add(tree.ModelX);
+			MainScene.Models.push_back(tree.ModelX);
+			growingModels.push_back(tree.ModelX);
+		}
+		else {
+			ParamWorld::RockObject rock(4, Color(150, 150, 150, 0), Vector2f(rootPos.x + 1.0f, rootPos.z), 
+				Vector2f(rootPos.x - 0.5f, rootPos.z - .5f), Vector2f(rootPos.x - 0.5f, rootPos.z + 0.5f));
+			MainScene.World.Add(rock.ModelX);
+			MainScene.Models.push_back(rock.ModelX);
+			growingModels.push_back(rock.ModelX);
+		}
 	}
 	currentTrees += newThings;
 }
@@ -234,19 +245,20 @@ void OculusWorldDemoApp::AddMoreThings(float x, float z) {
 void OculusWorldDemoApp::PopulateScene(const char *fileName)
 {
     ClearScene();
+	srand((unsigned int) time(NULL));
 	WriteLog("%s", fileName);
     XmlHandler xmlHandler;
 	MainScene.AddLight(Vector3f(0, 20, 0), Color4f(255, 255, 255, 255));
 	Ptr<Model> model = *new Model();
 
-	model->AddBox(0x614322FF, Vector3f(0.0f, -0.1f, -10.0f), Vector3f(20.0f, .1f, 20.0f));
+	model->AddBox(Color(11, 7, 4), Vector3f(0.0f, 0.0f, 0.0f), Vector3f(200.0f, .01f, 200.0f));
 	MainScene.World.Add(model);
 	MainScene.Models.push_back(model);
 
 	Ptr<Model> sky = *new Model();
-	populateSky(sky, Vector3f(0, 0, 0), 150.0);
-	MainScene.World.Add(sky);
-	MainScene.Models.push_back(sky);
+	populateSky(sky, Vector3f(0, 0, 0), 200.0);
+	SkyScene.World.Add(sky);
+	SkyScene.Models.push_back(sky);
 
     MainScene.SetAmbient(Color4f(1.0f, 1.0f, 1.0f, 1.0f));
 
@@ -347,6 +359,12 @@ void OculusWorldDemoApp::PopulateScene(const char *fileName)
 
 void OculusWorldDemoApp::PlayerFireCube()
 {
+	/*if (growingModels.size() > 0) {
+		growingModels[0]->ClearRenderer();
+		growingModels[0]->SetVisible(false);
+		return;
+	}
+	*/
 
 	// 10x10x10 cubes.
 	float cubeSize = 1.0f;
@@ -378,9 +396,10 @@ void OculusWorldDemoApp::PlayerFireCube()
 	// Add cube
 	model->AddBox(0xFFFFFFFF, Vector3f(8.0f, 1.0f, -2.0f), Vector3f(cubeSize, cubeSize, cubeSize), Quatf(Axis_Z, .5));
 
-	ParamWorld::TreeObject tree(Vector3f(0.0f, 0.0f, 0.0f), 5, 1.0f, .05f, .7f, MATH_FLOAT_PI / 4, Color(12, 240, 45), Color(240, 100, 100));
+	ParamWorld::TreeObject tree(Vector3f(0.0f, 0.0f, 0.0f), 5, 1.0f, .05f, .7f, MATH_FLOAT_PI / 4, Color(12, 240, 45, 0), Color(240, 100, 100, 0));
 	MainScene.World.Add(tree.ModelX);
 	MainScene.Models.push_back(tree.ModelX);
+	growingModels.push_back(tree.ModelX);
 }
 
 

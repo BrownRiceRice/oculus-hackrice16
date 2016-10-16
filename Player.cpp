@@ -87,13 +87,6 @@ Posef Player::VirtualWorldTransformfromRealPose(const Posef &sensorHeadPose, ovr
 bool Player::HandleMovement(double dt, std::vector<Ptr<CollisionModel> >* collisionModels,
 	                        std::vector<Ptr<CollisionModel> >* groundCollisionModels, bool shiftDown)
 {
-	// Handle Fire cube
-	if (Fire)
-	{
-		// Create cube
-		//OculusWorldDemo_Scene::PlayerFireCube()
-	}
-
     // Handle keyboard movement.
     // This translates BasePos based on the orientation and keys pressed.
     // Note that Pitch and Roll do not affect movement (they only affect view).

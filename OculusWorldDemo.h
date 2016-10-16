@@ -133,7 +133,10 @@ public:
 	// Our Player code
 	void		 PlayerFireCube();
 	void         AddMoreFloor(int x, int z);
-	void         AddMoreThings(float x, float y);
+	void         AddMoreThings(float x, float y, Vector3f dirFacing);
+	float        skyTurn = 0.0;
+	std::vector<Model *> growingModels;
+	int timeToWait = 20;
 	int currentTrees = 0;
 
     // Computes all of the Hmd values and configures render targets.
@@ -307,6 +310,7 @@ protected:
     Player				ThePlayer;
     Matrix4f            ViewFromWorld[2];   // One per eye.
     Scene               MainScene;
+	Scene               SkyScene;
     Scene               SmallGreenCube;
     Scene               SmallOculusCube;
     Scene               SmallOculusGreenCube;

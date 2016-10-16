@@ -27,3 +27,8 @@
 *.exe
 *.out
 *.app
+
+# Weird logs
+*.tlog
+*.pdb
+*.ilk

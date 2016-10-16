@@ -248,6 +248,7 @@
     <ClCompile Include="..\..\..\OculusWorldDemo_Scene.cpp" />
     <ClCompile Include="..\..\..\Player.cpp" />
     <ClCompile Include="..\..\..\Tracker.cpp" />
+    <ClCompile Include="..\..\..\TreeObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\CommonSrc\Platform\Gamepad.h" />
@@ -267,6 +268,7 @@
     <ClInclude Include="..\..\..\OculusWorldDemo.h" />
     <ClInclude Include="..\..\..\Player.h" />
     <ClInclude Include="..\..\..\Tracker.h" />
+    <ClInclude Include="..\..\..\TreeObject.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\..\OculusWorldDemo.rc" />

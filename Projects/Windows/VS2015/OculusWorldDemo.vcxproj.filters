@@ -45,6 +45,7 @@
     <ClCompile Include="..\..\..\..\CommonSrc\Util\StringHelper.cpp">
       <Filter>CommonSrc\Util</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\TreeObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\OculusWorldDemo.h" />
@@ -92,6 +93,7 @@
     <ClInclude Include="..\..\..\..\CommonSrc\Util\StringHelper.h">
       <Filter>CommonSrc\Util</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\TreeObject.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\..\OculusWorldDemo.rc" />

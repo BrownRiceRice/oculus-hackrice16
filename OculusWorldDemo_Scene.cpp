@@ -24,7 +24,8 @@ limitations under the License.
 *************************************************************************************/
 
 #include "OculusWorldDemo.h"
-
+#include "Extras/OVR_Math.h"
+#include "TreeObject.h"
 #include <string>
 #include <iostream>
 
@@ -197,13 +198,13 @@ void AddFloorCircleDonutModelVertices(Model* m, float radius)
 void OculusWorldDemoApp::PopulateScene(const char *fileName)
 {
     ClearScene();
-
+	WriteLog("%s", fileName);
     XmlHandler xmlHandler;
-    if(!xmlHandler.ReadFile(fileName, pRender, &MainScene, &CollisionModels, &GroundCollisionModels, SrgbRequested, AnisotropicSample))
-    {
-        Menu.SetPopupMessage("FILE LOAD FAILED");
-        Menu.SetPopupTimeout(10.0f, true);
-    }
+	//MainScene.AddLight(Vector3f(0, 20, 0), Color4f(255, 255, 255, 255));
+	Ptr<Model> model = *new Model();
+
+	model->AddBox(0x614322FF, Vector3f(0.0f, -0.1f, -10.0f), Vector3f(20.0f, .1f, 20.0f));
+	MainScene.World.Add(model);
 
     MainScene.SetAmbient(Color4f(1.0f, 1.0f, 1.0f, 1.0f));
 
@@ -306,7 +307,7 @@ void OculusWorldDemoApp::PlayerFireCube()
 {
 
 	// 10x10x10 cubes.
-	//float cubeSize = 3.0f;
+	float cubeSize = 1.0f;
 	
 	Ptr<Model> model = *new Model();
 	MainScene.World.Add(model);
@@ -323,15 +324,24 @@ void OculusWorldDemoApp::PlayerFireCube()
 	//model->Fill = fillR.GetPtr();
 	*/
 
+
+	//model->AddBox(0x610000FF, Vector3f(4.0f, 2.5f, -2.0f), Vector3f(3.0f, .5f, .5f));
 	// Add truck
-	model->AddBox(0x000000FF, Vector3f(8.0f, 1.0f, -2.0f), Vector3f(.5f, 3.0f, .5f));
+	//model->AddBox(0x000000FF, Vector3f(8.0f, 1.0f, -2.0f), Vector3f(.5f, 3.0f, .5f));
 	// Add branch 1
-	model->AddBox(0x000000FF, Vector3f(8.0f, 2.5f, -2.0f), Vector3f(3.0f, .5f, .5f));
+	//model->AddBox(0x000000FF, Vector3f(8.0f, 2.5f, -2.0f), Vector3f(3.0f, .5f, .5f));
 	// Add branch 2
-	model->AddBox(0x610000FF, Vector3f(5.0f, 2.5f, -2.0f), Vector3f(3.0f, .5f, .5f));
+	
 
 	// Add cube
-	//model->AddBox(0x000000FF, Vector3f(8.0f, 1.0f, -2.0f), Vector3f(cubeSize, cubeSize, cubeSize));
+	model->AddBox(0xFFFFFFFF, Vector3f(8.0f, 1.0f, -2.0f), Vector3f(cubeSize, cubeSize, cubeSize), Quatf(Axis_Z, .5));
+
+
+	ParamWorld::TreeObject tree(Vector3f(0.0f, 1.0f, 0.0f), 1, 1, .3f, 1, MATH_FLOAT_PI / 4, Color(12, 240, 45), Color(240, 100, 100));
+	for (std::vector<Ptr<Model>>::iterator it = tree.Models.begin(); it != tree.Models.end(); it++) {
+		MainScene.World.Add(*it);
+		MainScene.Models.push_back(*it);
+	}
 
 	WriteLog("Hello!");
 }

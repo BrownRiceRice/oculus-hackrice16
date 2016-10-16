@@ -34,7 +34,7 @@ limitations under the License.
 #include "Extras/OVR_Math.h"
 
 #include "Kernel/OVR_KeyCodes.h"
-#include "../CommonSrc/Render/Render_Device.h"
+#include "Render_Device.h"
 
 #include <vector>
 #include <string>

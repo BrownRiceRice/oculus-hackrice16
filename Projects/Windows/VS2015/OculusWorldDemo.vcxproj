@@ -280,6 +280,9 @@
   <ItemGroup>
     <ResourceCompile Include="..\..\..\OculusWorldDemo.rc" />
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\..\..\home.wav" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -119,4 +119,7 @@
       <UniqueIdentifier>{370b168a-42ef-457b-899a-4eda6fc5a328}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\..\..\home.wav" />
+  </ItemGroup>
 </Project>

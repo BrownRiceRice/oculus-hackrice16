@@ -30,6 +30,7 @@ limitations under the License.
 #include <string>
 #include <iostream>
 #include <time.h>
+#include <Windows.h>
 
 //-------------------------------------------------------------------------------------
 // ***** Scene Creation / Loading
@@ -263,6 +264,11 @@ void OculusWorldDemoApp::PopulateScene(const char *fileName)
 	SkyScene.Models.push_back(sky);
 
     MainScene.SetAmbient(Color4f(1.0f, 1.0f, 1.0f, 1.0f));
+
+
+    // Do the sound.
+    PlaySound(TEXT("home.wav"), NULL, SND_FILENAME | SND_ASYNC);
+
 
     std::string mainFilePathNoExtension = MainFilePath;
     StripExtension(mainFilePathNoExtension);

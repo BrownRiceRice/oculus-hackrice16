@@ -1,17 +1,18 @@
 #ifndef OVR_SceneParams_h
 #define OVR_SceneParams_h
 
-#include "Kernel/OVR_Types.h"
-#include "Kernel/OVR_Allocator.h"
-#include "Kernel/OVR_RefCount.h"
-#include "Kernel/OVR_System.h"
-#include "Kernel/OVR_Nullptr.h"
-#include "Kernel/OVR_Timer.h"
-#include "Kernel/OVR_SysFile.h"
-#include "Extras/OVR_Math.h"
+#include "AvailableParameters.h"
+#include "SParam.h"
 
+#include <algorithm>
+#include <math.h>
+#include <random>
 #include <vector>
+#include <iostream>
+#include <iomanip>
 #include <string>
+#include <map>
+#include <cmath>
 
 using namespace OVR;
 
@@ -22,26 +23,221 @@ class SceneParams
 {
 public:
 
-	// Colors
-	float RedMean;
-	float RedVariance;
-	float BlueMean;
-	float BlueVariance;
-	float GreenMean;
-	float GreenVariance;
-	float AlphaMean;
-	float AlphaVariance;
+	// Learning rate and its decay and minimum
+	float learningRate = 0.33f; // initial
+	float learningDecay = 1.0f - 0.001f;
+	float learningMaximum = 0.5f;
+	float learningMinimum = 0.1f;
+	float maximumVariance = 1.5f;
 
-	// Dimensions
-	float Diameter;
-	float Height;
-	float Thickness;
+	// Variance calculation, online
+	float nSavedChoices = 0.0f;
+	float onlineDelta[OVR::SP_Count];
+	float onlineDeltaN[OVR::SP_Count];
+	float onlineMean[OVR::SP_Count];
+	float onlineDelta2[OVR::SP_Count];
+	float onlineM2Right[OVR::SP_Count];
+	float onlineM2[OVR::SP_Count];
 
-	// Miscelleneaous
-	float BranchingFactor;
+	// Random number generators
+	std::default_random_engine randomGenerator;
+	std::uniform_real_distribution<float> unitUniformDistribution{};
+	std::normal_distribution<float> unitNormalDistribution{};
 
-	SceneParams();
-	~SceneParams();
+	// Available Parameters
+	SParam **AllParams = (SParam **)malloc(OVR::SP_Count * sizeof(SParam *));
+
+	// The current global "mean" parameter vector
+	float paramMeans[OVR::SP_Count];
+	float paramVariances[OVR::SP_Count];
+
+	// deviance is a multiplier applied to the variance of each parameter
+	float *generate(float deviance)
+	{
+		float *newVec = (float *)malloc(OVR::SP_Count * sizeof(float));
+		for (int i = 0; i < OVR::SP_Count; i++)
+		{
+			newVec[i] = AllParams[i]->generateGaussian(paramMeans[i], paramVariances[i] * deviance,
+				randomGenerator, unitNormalDistribution);
+		}
+		return newVec;
+	}
+
+	// Total random (valid) parameter
+	float *randomSP()
+	{
+		float *newVec = (float *)malloc(OVR::SP_Count * sizeof(float));
+		for (int i = 0; i < OVR::SP_Count; i++)
+		{
+			newVec[i] = AllParams[i]->generateUniform(unitUniformDistribution(randomGenerator));
+		}
+		return newVec;
+	}
+
+	// Move paramMeans towards/away from sp
+	void moveMeans(float *sp, bool towards)
+	{
+		// Calculate z-Scores
+		float *diffs = (float *)malloc(OVR::SP_Count * sizeof(float));
+		float *zScores = (float *)malloc(OVR::SP_Count * sizeof(float));
+		vectMinus(sp, paramMeans, diffs);
+		vectDiv(diffs, paramVariances, zScores);
+		
+		// Map zScores => max(1, abs(zScores))
+		for (int i = 0; i < OVR::SP_Count; i++)
+		{
+			float z = zScores[i];
+			if (z < 1.0f)
+			{
+				if (z >= -1.0f)
+				{
+					zScores[i] = 1;
+				}
+				else
+				{
+					zScores[i] = -z;
+				}
+			}
+		}
+
+		// Increase variances of far away params
+		vectProd(zScores, paramVariances, paramVariances);
+
+		// Move mean toward vector, also reuse zScores
+		vectProdScalar(diffs, learningRate, diffs);
+		if (towards)
+		{
+			vectAdd(paramMeans, diffs, paramMeans);
+		}
+		else
+		{
+			vectMinus(paramMeans, diffs, paramMeans);
+		}
+		
+		// Update learning rates
+		learningRate = std::max(learningMinimum, learningRate * learningDecay);
+	}
+
+	// Increase the variance so that learning is quick again
+	void changeVariability(float modifier)
+	{
+		vectProdScalar(paramVariances, modifier, paramVariances);
+		learningRate = std::max(std::min(learningRate * modifier, learningMaximum), learningMinimum);
+	}
+
+	// Updates the global variance so far
+	void updateVariance(float *sp)
+	{
+		nSavedChoices += 1;
+		
+		// For too few data points, no real variance
+		if (nSavedChoices < 2)
+		{
+			return;
+		}
+
+		// Welford Algorithm
+		vectMinus(sp, onlineMean, onlineDelta);
+		vectDivScalar(onlineDelta, nSavedChoices, onlineDeltaN);
+		vectAdd(onlineMean, onlineDeltaN, onlineMean);
+		vectMinus(sp, onlineMean, onlineDelta2);
+		vectProd(onlineDelta, onlineDelta2, onlineM2Right);
+		vectAdd(onlineM2, onlineM2Right, onlineM2);
+		vectDivScalar(onlineM2, nSavedChoices - 1, paramVariances);
+	}
+
+	// Reset variance to highest possible level
+	void resetVariability()
+	{
+		for (int i = 0; i < OVR::SP_Count; i++)
+		{
+			paramVariances[i] = maximumVariance;
+		}
+		learningRate = learningMaximum;
+	}
+
+	/*
+	* Mathematical functions
+	*/
+	void vectMinus(float *v1, float *v2, float *diff)
+	{
+		for (int i = 0; i < OVR::SP_Count; i++)
+		{
+			diff[i] = v1[i] - v2[i];
+		}
+	}
+
+	void vectAdd(float *v1, float *v2, float *sum)
+	{
+		for (int i = 0; i < OVR::SP_Count; i++)
+		{
+			sum[i] = v1[i] + v2[i];
+		}
+	}
+
+	void vectProd(float *v1, float *v2, float *prod)
+	{
+		for (int i = 0; i < OVR::SP_Count; i++)
+		{
+			prod[i] = v1[i] * v2[i];
+		}
+	}
+
+	void vectProdScalar(float *v1, float c, float *prod)
+	{
+		for (int i = 0; i < OVR::SP_Count; i++)
+		{
+			prod[i] = v1[i] * c;
+		}
+	}
+
+	void vectDiv(float *v1, float *v2, float *quot)
+	{
+		for (int i = 0; i < OVR::SP_Count; i++)
+		{
+			quot[i] = v1[i] / v2[i];
+		}
+	}
+
+	void vectDivScalar(float *v1, float c, float *quot)
+	{
+		for (int i = 0; i < OVR::SP_Count; i++)
+		{
+			quot[i] = v1[i] / c;
+		}
+	}
+
+	float l2_norm(float *v)
+	{
+		float sum = 0;
+		for (int i = 0; i < OVR::SP_Count; i++)
+		{
+			sum += v[i] * v[i];
+		}
+		return sqrt(sum);
+	}
+
+	/*
+	* Constructor and Destructor
+	*/
+	SceneParams()
+	{
+		// Initialize variances to 1
+		for (int i = 0; i < OVR::SP_Count; i++)
+		{
+			paramVariances[i] = 1.0f;
+		}
+
+		// Colors
+		AllParams[SP_Red] = new SParam(true, 0.0f, 255.0f);
+		AllParams[SP_Green] = new SParam(true, 0.0f, 255.0f);
+		AllParams[SP_Blue] = new SParam(true, 0.0f, 255.0f);
+		AllParams[SP_Alpha] = new SParam(true, 0.0f, 255.0f);
+
+		// Dimensions
+	}
+
+	~SceneParams() {};
 };
 
 #endif // OVR_SceneParams_h

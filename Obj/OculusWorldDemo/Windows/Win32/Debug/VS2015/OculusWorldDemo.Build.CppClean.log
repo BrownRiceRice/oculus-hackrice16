@@ -5,24 +5,59 @@ c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo\obj\oculusworldd
 c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo\obj\oculusworlddemo\windows\win32\debug\vs2015\win32_platform.obj
 c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo\obj\oculusworlddemo\windows\win32\debug\vs2015\render_device.obj
 c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo\obj\oculusworlddemo\windows\win32\debug\vs2015\optionmenu.obj
-c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo\obj\oculusworlddemo\windows\win32\debug\vs2015\tracker.obj
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo\obj\oculusworlddemo\windows\win32\debug\vs2015\player.obj
 c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo\obj\oculusworlddemo\windows\win32\debug\vs2015\platform.obj
 c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo\obj\oculusworlddemo\windows\win32\debug\vs2015\render_loadtexturedds.obj
 c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo\obj\oculusworlddemo\windows\win32\debug\vs2015\tinyxml2.obj
 c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo\obj\oculusworlddemo\windows\win32\debug\vs2015\renderprofiler.obj
-c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo\obj\oculusworlddemo\windows\win32\debug\vs2015\player.obj
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo\obj\oculusworlddemo\windows\win32\debug\vs2015\oculusworlddemo_scene.obj
 c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo\obj\oculusworlddemo\windows\win32\debug\vs2015\render_gl_device.obj
 c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo\obj\oculusworlddemo\windows\win32\debug\vs2015\render_loadtexturetga.obj
 c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo\obj\oculusworlddemo\windows\win32\debug\vs2015\render_xmlsceneloader.obj
 c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo\obj\oculusworlddemo\windows\win32\debug\vs2015\stringhelper.obj
-c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo\obj\oculusworlddemo\windows\win32\debug\vs2015\oculusworlddemo_scene.obj
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo\obj\oculusworlddemo\windows\win32\debug\vs2015\tracker.obj
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo - copy\obj\oculusworlddemo\windows\win32\debug\vs2015\platform.obj
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo - copy\obj\oculusworlddemo\windows\win32\debug\vs2015\render_loadtexturedds.obj
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo - copy\obj\oculusworlddemo\windows\win32\debug\vs2015\render_xmlsceneloader.obj
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo - copy\obj\oculusworlddemo\windows\win32\debug\vs2015\stringhelper.obj
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo - copy\obj\oculusworlddemo\windows\win32\debug\vs2015\tracker.obj
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo - copy\obj\oculusworlddemo\windows\win32\debug\vs2015\render_gl_device.obj
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo - copy\obj\oculusworlddemo\windows\win32\debug\vs2015\render_device.obj
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo - copy\obj\oculusworlddemo\windows\win32\debug\vs2015\renderprofiler.obj
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo - copy\obj\oculusworlddemo\windows\win32\debug\vs2015\oculusworlddemo.obj
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo - copy\obj\oculusworlddemo\windows\win32\debug\vs2015\win32_platform.obj
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo - copy\obj\oculusworlddemo\windows\win32\debug\vs2015\render_loadtexturetga.obj
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo - copy\obj\oculusworlddemo\windows\win32\debug\vs2015\tinyxml2.obj
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo - copy\obj\oculusworlddemo\windows\win32\debug\vs2015\optionmenu.obj
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo - copy\obj\oculusworlddemo\windows\win32\debug\vs2015\player.obj
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo - copy\obj\oculusworlddemo\windows\win32\debug\vs2015\win32_gamepad.obj
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo - copy\obj\oculusworlddemo\windows\win32\debug\vs2015\render_gl_win32_device.obj
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo - copy\obj\oculusworlddemo\windows\win32\debug\vs2015\render_d3d11_device.obj
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo - copy\obj\oculusworlddemo\windows\win32\debug\vs2015\oculusworlddemo_scene.obj
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo - copy\obj\oculusworlddemo\windows\win32\debug\vs2015\treeobject.obj
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo - copy\obj\oculusworlddemo\windows\win32\debug\vs2015\render_device_hr.obj
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo\bin\windows\win32\debug\vs2015\oculusworlddemo.ilk
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo\bin\windows\win32\debug\vs2015\oculusworlddemo.exe
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo\bin\windows\win32\debug\vs2015\oculusworlddemo.pdb
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo - copy\bin\windows\win32\debug\vs2015\oculusworlddemo.ilk
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo - copy\bin\windows\win32\debug\vs2015\oculusworlddemo.exe
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo - copy\bin\windows\win32\debug\vs2015\oculusworlddemo.pdb
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo\bin\windows\win32\debug\vs2015\oculusworlddemo.lib
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo\bin\windows\win32\debug\vs2015\oculusworlddemo.exp
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo - copy\bin\windows\win32\debug\vs2015\oculusworlddemo.lib
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo - copy\bin\windows\win32\debug\vs2015\oculusworlddemo.exp
 c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo\obj\oculusworlddemo\windows\win32\debug\vs2015\oculusworlddemo.res
-c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo\obj\oculusworlddemo\windows\win32\debug\vs2015\oculusworlddemo.tlog\cl.command.1.tlog
-c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo\obj\oculusworlddemo\windows\win32\debug\vs2015\oculusworlddemo.tlog\cl.read.1.tlog
-c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo\obj\oculusworlddemo\windows\win32\debug\vs2015\oculusworlddemo.tlog\cl.write.1.tlog
-c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo\obj\oculusworlddemo\windows\win32\debug\vs2015\oculusworlddemo.tlog\link.command.1.tlog
-c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo\obj\oculusworlddemo\windows\win32\debug\vs2015\oculusworlddemo.tlog\link.read.1.tlog
-c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo\obj\oculusworlddemo\windows\win32\debug\vs2015\oculusworlddemo.tlog\link.write.1.tlog
-c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo\obj\oculusworlddemo\windows\win32\debug\vs2015\oculusworlddemo.tlog\rc.command.1.tlog
-c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo\obj\oculusworlddemo\windows\win32\debug\vs2015\oculusworlddemo.tlog\rc.read.1.tlog
-c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo\obj\oculusworlddemo\windows\win32\debug\vs2015\oculusworlddemo.tlog\rc.write.1.tlog
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo - copy\obj\oculusworlddemo\windows\win32\debug\vs2015\oculusworlddemo.res
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo - copy\projects\windows\vs2015\..\..\..\bin\windows\win32\debug\vs2015\oculusworlddemo.pdb
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo - copy\projects\windows\vs2015\..\..\..\bin\windows\win32\debug\vs2015\oculusworlddemo.exe
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo - copy\projects\windows\vs2015\..\..\..\bin\windows\win32\debug\vs2015\oculusworlddemo.ilk
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo - copy\obj\oculusworlddemo\windows\win32\debug\vs2015\oculusworlddemo.tlog\cl.command.1.tlog
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo - copy\obj\oculusworlddemo\windows\win32\debug\vs2015\oculusworlddemo.tlog\cl.read.1.tlog
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo - copy\obj\oculusworlddemo\windows\win32\debug\vs2015\oculusworlddemo.tlog\cl.write.1.tlog
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo - copy\obj\oculusworlddemo\windows\win32\debug\vs2015\oculusworlddemo.tlog\link.command.1.tlog
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo - copy\obj\oculusworlddemo\windows\win32\debug\vs2015\oculusworlddemo.tlog\link.read.1.tlog
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo - copy\obj\oculusworlddemo\windows\win32\debug\vs2015\oculusworlddemo.tlog\link.write.1.tlog
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo - copy\obj\oculusworlddemo\windows\win32\debug\vs2015\oculusworlddemo.tlog\oculusworlddemo.write.1u.tlog
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo - copy\obj\oculusworlddemo\windows\win32\debug\vs2015\oculusworlddemo.tlog\rc.command.1.tlog
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo - copy\obj\oculusworlddemo\windows\win32\debug\vs2015\oculusworlddemo.tlog\rc.read.1.tlog
+c:\program files (x86)\oculus\oculussdk\samples\oculusworlddemo - copy\obj\oculusworlddemo\windows\win32\debug\vs2015\oculusworlddemo.tlog\rc.write.1.tlog

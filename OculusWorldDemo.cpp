@@ -1622,7 +1622,7 @@ void OculusWorldDemoApp::OnMouseMove(int x, int y, int modifiers)
 
 void OculusWorldDemoApp::OnKey(OVR::KeyCode key, int chr, bool down, int modifiers)
 {
-	WriteLog("Key pressed: %d\n", key);
+	//WriteLog("Key pressed: %d\n", key);
     if (Menu.OnKey(key, chr, down, modifiers))
         return;
 
@@ -2178,7 +2178,13 @@ void OculusWorldDemoApp::OnIdle()
 
     // Movement/rotation with the gamepad.
     ThePlayer.BodyYaw -= ThePlayer.GamepadRotate.x * dt;
-    ThePlayer.HandleMovement(dt, &CollisionModels, &GroundCollisionModels, ShiftDown);
+    bool newGrid = ThePlayer.HandleMovement(dt, &CollisionModels, &GroundCollisionModels, ShiftDown);
+	if (newGrid) {
+		// Draw more floor underneath you.
+		WriteLog("New grid");
+		Vector3f pos = ThePlayer.GetBodyPos(TrackingOriginType);
+		AddMoreFloor((int) pos.x, (int)pos.z);
+	}
 
     // Find the pose of the player's torso (rather than their head) in the world.
     // Literally, this is the pose of the middle eye if they were sitting still and upright, facing forwards.

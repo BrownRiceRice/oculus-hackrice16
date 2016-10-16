@@ -29,7 +29,6 @@ limitations under the License.
 #include <string>
 #include <iostream>
 
-
 //-------------------------------------------------------------------------------------
 // ***** Scene Creation / Loading
 
@@ -193,6 +192,29 @@ void AddFloorCircleDonutModelVertices(Model* m, float radius)
     }	
 }
 
+void populateSky(Ptr<Model> sky, Vector3f origin, float dist) {
+	Color c(225, 255, 255);
+	//float y = 100.0;
+	Vector3f size(0.5f, 0.5f, 0.5f);
+	
+	for (int i = 0; i < 70; i++) {
+		float u = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+		float v = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+		float theta = MATH_FLOAT_PI * u;
+		float phi = acos(2 * v - 1);
+		Vector3f pos = (Quatf(Axis_Y, phi) * Quatf(Axis_Z, -theta)).Rotate(origin - Vector3f(dist, 0, 0));
+		//float x = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / 200.0));
+		//float z = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / 200.0));
+		sky->AddBox(c, pos, size);
+	}
+}
+
+void OculusWorldDemoApp::AddMoreFloor(int x, int z) {
+	Ptr<Model> model = *new Model();
+	model->AddBox(0x614322FF, Vector3f((x * 1.0f) + .5f, 0.0f, (z * 1.0f) + .5f), Vector3f(1.0f, 0.01f, 1.0f));
+	MainScene.World.Add(model);
+	MainScene.Models.push_back(model);
+}
 
 // Loads the scene data
 void OculusWorldDemoApp::PopulateScene(const char *fileName)
@@ -200,11 +222,17 @@ void OculusWorldDemoApp::PopulateScene(const char *fileName)
     ClearScene();
 	WriteLog("%s", fileName);
     XmlHandler xmlHandler;
-	//MainScene.AddLight(Vector3f(0, 20, 0), Color4f(255, 255, 255, 255));
+	MainScene.AddLight(Vector3f(0, 20, 0), Color4f(255, 255, 255, 255));
 	Ptr<Model> model = *new Model();
 
 	model->AddBox(0x614322FF, Vector3f(0.0f, -0.1f, -10.0f), Vector3f(20.0f, .1f, 20.0f));
 	MainScene.World.Add(model);
+	MainScene.Models.push_back(model);
+
+	Ptr<Model> sky = *new Model();
+	populateSky(sky, Vector3f(0, 0, 0), 150.0);
+	MainScene.World.Add(sky);
+	MainScene.Models.push_back(sky);
 
     MainScene.SetAmbient(Color4f(1.0f, 1.0f, 1.0f, 1.0f));
 
@@ -335,9 +363,9 @@ void OculusWorldDemoApp::PlayerFireCube()
 
 	// Add cube
 	model->AddBox(0xFFFFFFFF, Vector3f(8.0f, 1.0f, -2.0f), Vector3f(cubeSize, cubeSize, cubeSize), Quatf(Axis_Z, .5));
+	//model->AddTetra(Color(240, 1, 0), Vector3f(0, 4, 0), Vector3f(1, 0, 1.5), Vector3f(-1, 0, 1.5), Vector3f(0, 0, -1.5));
 
-
-	ParamWorld::TreeObject tree(Vector3f(0.0f, 1.0f, 0.0f), 1, 1, .3f, 1, MATH_FLOAT_PI / 4, Color(12, 240, 45), Color(240, 100, 100));
+	ParamWorld::TreeObject tree(Vector3f(0.0f, 0.0f, 0.0f), 5, 1.0f, .05f, .7f, MATH_FLOAT_PI / 4, Color(12, 240, 45), Color(240, 100, 100));
 	for (std::vector<Ptr<Model>>::iterator it = tree.Models.begin(); it != tree.Models.end(); it++) {
 		MainScene.World.Add(*it);
 		MainScene.Models.push_back(*it);
@@ -345,9 +373,6 @@ void OculusWorldDemoApp::PlayerFireCube()
 
 	WriteLog("Hello!");
 }
-
-
-
 
 
 void OculusWorldDemoApp::PopulatePreloadScene()

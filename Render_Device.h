@@ -142,7 +142,7 @@ enum TextureFormat
     Texture_RGBA16f         = 0x70,
     // End of OVR_FORMAT corresponding formats
     //////////////////////////////////////////////////////////////////////////
-
+	
     Texture_RGBA            = Texture_RGBA8,
     Texture_BGRA            = Texture_BGRA8,
     Texture_R               = 0x100,
@@ -675,6 +675,8 @@ public:
 
     // Adds box at specified location to current vertices.
     void AddBox(Color c, Vector3f origin, Vector3f size);
+
+	void AddTetra(Color color, Vector3f a, Vector3f b, Vector3f c, Vector3f d);
 
 	void AddBox(Color c, Vector3f origin, Vector3f size, Quatf rotation);
 

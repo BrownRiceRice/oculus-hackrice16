@@ -238,7 +238,7 @@ void OculusWorldDemoApp::AddMoreThings(float x, float z, Vector3f dirFacing) {
 			}
 		}
 		else {
-			ParamWorld::RockObject rock(4, Color(150, 150, 150, 0), Vector2f(rootPos.x + 1.0f, rootPos.z), 
+			ParamWorld::RockObject rock(4, Color(rand() % 250, rand() % 200, rand() % 200, 0), Vector2f(rootPos.x + 1.0f, rootPos.z),
 				Vector2f(rootPos.x - 0.5f, rootPos.z - .5f), Vector2f(rootPos.x - 0.5f, rootPos.z + 0.5f));
 			MainScene.World.Add(rock.ModelX);
 			MainScene.Models.push_back(rock.ModelX);
@@ -257,6 +257,9 @@ void OculusWorldDemoApp::PopulateScene(const char *fileName)
 	WriteLog("%s", fileName);
     XmlHandler xmlHandler;
 	MainScene.AddLight(Vector3f(0, 20, 0), Color4f(255, 255, 255, 255));
+	MainScene.AddLight(Vector3f(0, 100, 0), Color4f(255, 255, 255, 255));
+	MainScene.AddLight(Vector3f(10, 10, -5), Color4f(255, 255, 255, 255));
+	MainScene.AddLight(Vector3f(0, 1, 0), Color4f(255, 255, 255, 255));
 	Ptr<Model> model = *new Model();
 
 	model->AddBox(Color(11, 7, 4), Vector3f(0.0f, 0.0f, 0.0f), Vector3f(800.0f, .01f, 800.0f));
@@ -279,7 +282,7 @@ void OculusWorldDemoApp::PopulateScene(const char *fileName)
 	AddMoreThings(7, 0, Quatf(Axis_Y, ThePlayer.GetApparentBodyYaw().Get()).Rotate(Vector3f(-1, 0, 1)));
 
     // Do the sound.
-    PlaySound(TEXT("home.wav"), NULL, SND_FILENAME | SND_ASYNC);
+    PlaySound(TEXT("C:\\Program Files (x86)\\Oculus\\OculusSDK\\Samples\\OculusWorldDemo - Copy\\home.wav"), NULL, SND_FILENAME | SND_ASYNC);
 
 
     std::string mainFilePathNoExtension = MainFilePath;

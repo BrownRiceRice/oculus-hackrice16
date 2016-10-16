@@ -2,6 +2,10 @@
 #define PARAMWORLD_RockObject_H
 
 #include "OculusWorldDemo.h"
+#include <math.h>
+#include <algorithm>
+
+#define SHADE 20
 
 namespace ParamWorld {
 	class RockObject {
@@ -13,7 +17,7 @@ namespace ParamWorld {
 
 	private:
 		int _depth;
-		OVR::Color _color;
+		OVR::Color _color1, _color2, _color3;
 
 		void Init(int depth, Vector3f a, Vector3f b, Vector3f c);
 

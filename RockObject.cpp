@@ -3,7 +3,7 @@
 using namespace ParamWorld;
 
 // Forcing it to be on the ground.
-RockObject::RockObject(int depth, OVR::Color color, Vector2f a, Vector2f b, Vector2f c) : _depth(depth), _color1(color) {
+RockObject::RockObject(int depth, OVR::Color color, Vector2f a, Vector2f b, Vector2f c, float heightMult) : _depth(depth), _color1(color), _heightMult(heightMult) {
 	ModelX = *new Model();
 	Init(depth, Vector3f(a.x, 0, a.y), Vector3f(b.x, 0, b.y), Vector3f(c.x, 0, c.y));
 	_color2 = Color((unsigned char)std::min(color.R + SHADE, 255), (unsigned char)std::min(color.G + SHADE, 255), (unsigned char) std::min(color.B + SHADE, 255), (unsigned char) 255);
@@ -47,7 +47,7 @@ Vector3f RockObject::sampleInTri(Vector3f a, Vector3f b, Vector3f c) {
 		v = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
 	} while (u + v > 1);
 	Vector3f p =  ((b - a) * u + (c - a) * v) + a;
-	float w = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+	float w = static_cast <float> (rand()) / static_cast <float> (RAND_MAX/_heightMult);
 	Vector3f n = (b - a).Cross((c - a));
 	float area = n.Length() / 2;
 

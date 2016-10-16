@@ -239,13 +239,12 @@ void OculusWorldDemoApp::AddMoreThings(float x, float z, Vector3f dirFacing) {
 		}
 		else {
 			ParamWorld::RockObject rock(4, Color(rand() % 250, rand() % 200, rand() % 200, 0), Vector2f(rootPos.x + 1.0f, rootPos.z),
-				Vector2f(rootPos.x - 0.5f, rootPos.z - .5f), Vector2f(rootPos.x - 0.5f, rootPos.z + 0.5f));
+				Vector2f(rootPos.x - 0.5f, rootPos.z - .5f), Vector2f(rootPos.x - 0.5f, rootPos.z + 0.5f), 1.4f);
 			MainScene.World.Add(rock.ModelX);
 			MainScene.Models.push_back(rock.ModelX);
 			growingModels.push_back(rock.ModelX);
-
-		}
 	}
+		}
 	currentTrees += newThings;
 }
 

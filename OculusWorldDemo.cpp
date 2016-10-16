@@ -1256,7 +1256,7 @@ ovrResult OculusWorldDemoApp::CalculateHmdValues()
     if (NotificationTimeout != 0.0f)
     {
         GetPlatformCore()->SetNotificationOverlay(0, 28, 8,
-           "Rendering to the HMD - Please put on your Rift");
+           "Please put on your Rift and pickup your controller");
         GetPlatformCore()->SetNotificationOverlay(1, 24, -8,
             MirrorToWindow ? "'M' - Mirror to Window [On]" : "'M' - Mirror to Window [Off]");
     }
@@ -1392,6 +1392,7 @@ ovrResult OculusWorldDemoApp::CalculateHmdValues()
     Projection[0] = ovrMatrix4f_Projection(EyeRenderDesc[0].Fov, NearClip, FarClip, projectionModifier);
     Projection[1] = ovrMatrix4f_Projection(EyeRenderDesc[1].Fov, NearClip, FarClip, projectionModifier);
     PosTimewarpProjectionDesc = ovrTimewarpProjectionDesc_FromProjection(Projection[0], projectionModifier);
+
 
     // all done
     HmdSettingsChanged = false;
@@ -2142,12 +2143,12 @@ void OculusWorldDemoApp::OnIdle()
     }
 
     // Report vision tracking
-    bool hadVisionTracking = HaveVisionTracking;
+    //ool hadVisionTracking = HaveVisionTracking;
     HaveVisionTracking = (trackState.StatusFlags & ovrStatus_PositionTracked) != 0;
-    if (HaveVisionTracking && !hadVisionTracking)
-        Menu.SetPopupMessage("Vision Tracking Acquired");
-    if (!HaveVisionTracking && hadVisionTracking)
-        Menu.SetPopupMessage("Lost Vision Tracking");
+    //if (HaveVisionTracking && !hadVisionTracking)
+        //Menu.SetPopupMessage("Vision Tracking Acquired");
+    //if (!HaveVisionTracking && hadVisionTracking)
+        //Menu.SetPopupMessage("Lost Vision Tracking");
 
     // Report position tracker
     bool hadPositionTracker = HavePositionTracker;
@@ -2161,7 +2162,7 @@ void OculusWorldDemoApp::OnIdle()
     bool hadHMDConnected = HaveHMDConnected;
     HaveHMDConnected = (sessionStatus.HmdPresent == ovrTrue);
     if (HaveHMDConnected && !hadHMDConnected)
-        Menu.SetPopupMessage("HMD Connected");
+        Menu.SetPopupMessage("No Man's Sky:\nMove around and turn with the Xbox controller");
     if (!HaveHMDConnected && hadHMDConnected)
         Menu.SetPopupMessage("HMD Disconnected");
 

@@ -141,6 +141,7 @@ OculusWorldDemoApp::OculusWorldDemoApp() :
 	ThePlayer(),
 	MainScene(),
 	SkyScene(),
+	sceneParams(),
     SmallGreenCube(),
     SmallOculusCube(),
     SmallOculusGreenCube(),
@@ -2016,7 +2017,7 @@ void OculusWorldDemoApp::OnIdle()
 			}
 		}
 		timeToWait = 5;
-		WriteLog("incremented Alphas");
+		//WriteLog("incremented Alphas");
 	}
 	else {
 		timeToWait--;

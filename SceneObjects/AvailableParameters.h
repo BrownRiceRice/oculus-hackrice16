@@ -1,7 +1,7 @@
 #ifndef OVR_AvailableParameters_h
 #define OVR_AvailableParameters_h
 
-namespace OVR {
+namespace ParamWorld {
 
 	//-----------------------------------------------------------------------------------
 	// ***** AvailableParameters
@@ -13,6 +13,19 @@ namespace OVR {
 		SP_Green,
 		SP_Blue,
 		SP_Alpha,
+
+		// Tree Variables
+		SP_Depth,
+		SP_Width,
+		SP_Height,
+		SP_Scale,
+		SP_SplitAngle,
+		SP_BranchR,
+		SP_BranchG,
+		SP_BranchB,
+		SP_LeafR,
+		SP_LeafG,
+		SP_LeafB,
 
 		// Total number of variables
 		SP_Count

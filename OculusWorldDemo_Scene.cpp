@@ -225,7 +225,9 @@ void OculusWorldDemoApp::AddMoreThings(float x, float z, Vector3f dirFacing) {
 		float theta = ((static_cast <float> (rand()) / static_cast <float> (RAND_MAX)) * MATH_FLOAT_PI * .7f) - (MATH_FLOAT_PI * .35f); // wide FOV
 		Vector3f rootPos = Vector3f(x, 0, z) + Quatf(Axis_Y, theta).Rotate(dirFacing * radius);
 		if ((rand() % 2) == 0) {
-			ParamWorld::TreeObject tree(rootPos, 3, 1.0f, .05f, .8f, MATH_FLOAT_PI / 4, Color(12, 240, 45, 0), Color(240, 100, 100, 0));
+			WriteLog("Adding something");
+			ParamWorld::TreeObject tree(rootPos, sceneParams.generate(2.0f));
+			//ParamWorld::TreeObject tree(rootPos, 3, 1.0f, .05f, .8f, MATH_FLOAT_PI / 4, Color(12, 240, 45, 0), Color(240, 100, 100, 0));
 			MainScene.World.Add(tree.ModelX);
 			MainScene.Models.push_back(tree.ModelX);
 			growingModels.push_back(tree.ModelX);

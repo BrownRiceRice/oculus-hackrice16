@@ -46,6 +46,7 @@ limitations under the License.
 
 #include "Player.h"
 #include "Tracker.h"
+#include "SceneObjects\SceneParams.h"
 
 #include <vector>
 #include <string>
@@ -138,6 +139,7 @@ public:
 	std::vector<Model *> growingModels;
 	int timeToWait = 20;
 	int currentTrees = 0;
+	SceneParams sceneParams;
 
     // Computes all of the Hmd values and configures render targets.
     ovrResult    CalculateHmdValues();

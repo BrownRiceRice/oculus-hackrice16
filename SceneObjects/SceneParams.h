@@ -14,7 +14,7 @@
 #include <map>
 #include <cmath>
 
-using namespace OVR;
+using namespace ParamWorld;
 
 //-------------------------------------------------------------------------------------
 // ***** SceneParams
@@ -32,12 +32,12 @@ public:
 
 	// Variance calculation, online
 	float nSavedChoices = 0.0f;
-	float onlineDelta[OVR::SP_Count];
-	float onlineDeltaN[OVR::SP_Count];
-	float onlineMean[OVR::SP_Count];
-	float onlineDelta2[OVR::SP_Count];
-	float onlineM2Right[OVR::SP_Count];
-	float onlineM2[OVR::SP_Count];
+	float onlineDelta[SP_Count];
+	float onlineDeltaN[SP_Count];
+	float onlineMean[SP_Count];
+	float onlineDelta2[SP_Count];
+	float onlineM2Right[SP_Count];
+	float onlineM2[SP_Count];
 
 	// Random number generators
 	std::default_random_engine randomGenerator;
@@ -45,17 +45,17 @@ public:
 	std::normal_distribution<float> unitNormalDistribution{};
 
 	// Available Parameters
-	SParam **AllParams = (SParam **)malloc(OVR::SP_Count * sizeof(SParam *));
+	SParam **AllParams = (SParam **)malloc(SP_Count * sizeof(SParam *));
 
 	// The current global "mean" parameter vector
-	float paramMeans[OVR::SP_Count];
-	float paramVariances[OVR::SP_Count];
+	float paramMeans[SP_Count];
+	float paramVariances[SP_Count];
 
 	// deviance is a multiplier applied to the variance of each parameter
 	float *generate(float deviance)
 	{
-		float *newVec = (float *)malloc(OVR::SP_Count * sizeof(float));
-		for (int i = 0; i < OVR::SP_Count; i++)
+		float *newVec = (float *)malloc(SP_Count * sizeof(float));
+		for (int i = 0; i < SP_Count; i++)
 		{
 			newVec[i] = AllParams[i]->generateGaussian(paramMeans[i], paramVariances[i] * deviance,
 				randomGenerator, unitNormalDistribution);
@@ -66,8 +66,8 @@ public:
 	// Total random (valid) parameter
 	float *randomSP()
 	{
-		float *newVec = (float *)malloc(OVR::SP_Count * sizeof(float));
-		for (int i = 0; i < OVR::SP_Count; i++)
+		float *newVec = (float *)malloc(SP_Count * sizeof(float));
+		for (int i = 0; i < SP_Count; i++)
 		{
 			newVec[i] = AllParams[i]->generateUniform(unitUniformDistribution(randomGenerator));
 		}
@@ -77,14 +77,16 @@ public:
 	// Move paramMeans towards/away from sp
 	void moveMeans(float *sp, bool towards)
 	{
+		updateVariance(sp);
+
 		// Calculate z-Scores
-		float *diffs = (float *)malloc(OVR::SP_Count * sizeof(float));
-		float *zScores = (float *)malloc(OVR::SP_Count * sizeof(float));
+		float *diffs = (float *)malloc(SP_Count * sizeof(float));
+		float *zScores = (float *)malloc(SP_Count * sizeof(float));
 		vectMinus(sp, paramMeans, diffs);
 		vectDiv(diffs, paramVariances, zScores);
 		
 		// Map zScores => max(1, abs(zScores))
-		for (int i = 0; i < OVR::SP_Count; i++)
+		for (int i = 0; i < SP_Count; i++)
 		{
 			float z = zScores[i];
 			if (z < 1.0f)
@@ -149,7 +151,7 @@ public:
 	// Reset variance to highest possible level
 	void resetVariability()
 	{
-		for (int i = 0; i < OVR::SP_Count; i++)
+		for (int i = 0; i < SP_Count; i++)
 		{
 			paramVariances[i] = maximumVariance;
 		}
@@ -161,7 +163,7 @@ public:
 	*/
 	void vectMinus(float *v1, float *v2, float *diff)
 	{
-		for (int i = 0; i < OVR::SP_Count; i++)
+		for (int i = 0; i < SP_Count; i++)
 		{
 			diff[i] = v1[i] - v2[i];
 		}
@@ -169,7 +171,7 @@ public:
 
 	void vectAdd(float *v1, float *v2, float *sum)
 	{
-		for (int i = 0; i < OVR::SP_Count; i++)
+		for (int i = 0; i < SP_Count; i++)
 		{
 			sum[i] = v1[i] + v2[i];
 		}
@@ -177,7 +179,7 @@ public:
 
 	void vectProd(float *v1, float *v2, float *prod)
 	{
-		for (int i = 0; i < OVR::SP_Count; i++)
+		for (int i = 0; i < SP_Count; i++)
 		{
 			prod[i] = v1[i] * v2[i];
 		}
@@ -185,7 +187,7 @@ public:
 
 	void vectProdScalar(float *v1, float c, float *prod)
 	{
-		for (int i = 0; i < OVR::SP_Count; i++)
+		for (int i = 0; i < SP_Count; i++)
 		{
 			prod[i] = v1[i] * c;
 		}
@@ -193,7 +195,7 @@ public:
 
 	void vectDiv(float *v1, float *v2, float *quot)
 	{
-		for (int i = 0; i < OVR::SP_Count; i++)
+		for (int i = 0; i < SP_Count; i++)
 		{
 			quot[i] = v1[i] / v2[i];
 		}
@@ -201,7 +203,7 @@ public:
 
 	void vectDivScalar(float *v1, float c, float *quot)
 	{
-		for (int i = 0; i < OVR::SP_Count; i++)
+		for (int i = 0; i < SP_Count; i++)
 		{
 			quot[i] = v1[i] / c;
 		}
@@ -210,7 +212,7 @@ public:
 	float l2_norm(float *v)
 	{
 		float sum = 0;
-		for (int i = 0; i < OVR::SP_Count; i++)
+		for (int i = 0; i < SP_Count; i++)
 		{
 			sum += v[i] * v[i];
 		}
@@ -222,19 +224,30 @@ public:
 	*/
 	SceneParams()
 	{
-		// Initialize variances to 1
-		for (int i = 0; i < OVR::SP_Count; i++)
-		{
-			paramVariances[i] = 1.0f;
-		}
-
 		// Colors
 		AllParams[SP_Red] = new SParam(true, 0.0f, 255.0f);
 		AllParams[SP_Green] = new SParam(true, 0.0f, 255.0f);
 		AllParams[SP_Blue] = new SParam(true, 0.0f, 255.0f);
 		AllParams[SP_Alpha] = new SParam(true, 0.0f, 255.0f);
 
-		// Dimensions
+		AllParams[SP_Depth] = new SParam(true, 1.0f, 8.0f);
+		AllParams[SP_Width] = new SParam(false, 0.1f, 2.0f);
+		AllParams[SP_Height] = new SParam(false, 1.0f, 20.0f);
+		AllParams[SP_Scale] = new SParam(false, 0.1f, 1.5f);
+		AllParams[SP_SplitAngle] = new SParam(false, 0.1f, MATH_FLOAT_PI / 2);
+		AllParams[SP_BranchR] = new SParam(true, 0.0f, 255.0f);
+		AllParams[SP_BranchG] = new SParam(true, 0.0f, 255.0f);
+		AllParams[SP_BranchB] = new SParam(true, 0.0f, 255.0f);
+		AllParams[SP_LeafR] = new SParam(true, 0.0f, 255.0f);
+		AllParams[SP_LeafG] = new SParam(true, 0.0f, 255.0f);
+		AllParams[SP_LeafB] = new SParam(true, 0.0f, 255.0f);
+
+		// Initialize variances to 1
+		for (int i = 0; i < SP_Count; i++)
+		{
+			paramVariances[i] = 1.0f;
+			paramMeans[i] = AllParams[i]->generateUniform(unitUniformDistribution(randomGenerator));
+		}
 	}
 
 	~SceneParams() {};

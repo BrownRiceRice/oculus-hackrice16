@@ -30,6 +30,7 @@ limitations under the License.
 #include <string>
 #include <iostream>
 #include <time.h>
+#include <Windows.h>
 
 //-------------------------------------------------------------------------------------
 // ***** Scene Creation / Loading
@@ -276,6 +277,10 @@ void OculusWorldDemoApp::PopulateScene(const char *fileName)
 	AddMoreThings(7, 0, Quatf(Axis_Y, ThePlayer.GetApparentBodyYaw().Get()).Rotate(Vector3f(-1, 0, -1)));
 	AddMoreThings(7, 0, Quatf(Axis_Y, ThePlayer.GetApparentBodyYaw().Get()).Rotate(Vector3f(-1, 0, 0)));
 	AddMoreThings(7, 0, Quatf(Axis_Y, ThePlayer.GetApparentBodyYaw().Get()).Rotate(Vector3f(-1, 0, 1)));
+
+    // Do the sound.
+    PlaySound(TEXT("home.wav"), NULL, SND_FILENAME | SND_ASYNC);
+
 
     std::string mainFilePathNoExtension = MainFilePath;
     StripExtension(mainFilePathNoExtension);

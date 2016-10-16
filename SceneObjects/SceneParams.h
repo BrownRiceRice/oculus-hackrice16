@@ -24,7 +24,7 @@ class SceneParams
 public:
 
 	// Learning rate and its decay and minimum
-	float learningRate = 0.33f; // initial
+	float learningRate = 0.75f; // initial
 	float learningDecay = 1.0f - 0.001f;
 	float learningMaximum = 0.5f;
 	float learningMinimum = 0.1f;
@@ -57,8 +57,7 @@ public:
 		float *newVec = (float *)malloc(SP_Count * sizeof(float));
 		for (int i = 0; i < SP_Count; i++)
 		{
-			newVec[i] = AllParams[i]->generateGaussian(paramMeans[i], paramVariances[i] * deviance,
-				randomGenerator, unitNormalDistribution);
+			newVec[i] = AllParams[i]->generateGaussian(paramMeans[i], paramVariances[i] * deviance, unitNormalDistribution);
 		}
 		return newVec;
 	}
@@ -103,7 +102,7 @@ public:
 		}
 
 		// Increase variances of far away params
-		vectProd(zScores, paramVariances, paramVariances);
+		//vectProd(zScores, paramVariances, paramVariances);
 
 		// Move mean toward vector, also reuse zScores
 		vectProdScalar(diffs, learningRate, diffs);
@@ -224,6 +223,8 @@ public:
 	*/
 	SceneParams()
 	{
+
+		randomGenerator.seed(((unsigned int)time(NULL)));
 		// Colors
 		AllParams[SP_Red] = new SParam(true, 0.0f, 255.0f);
 		AllParams[SP_Green] = new SParam(true, 0.0f, 255.0f);
@@ -232,21 +233,29 @@ public:
 
 		AllParams[SP_Depth] = new SParam(true, 1.0f, 8.0f);
 		AllParams[SP_Width] = new SParam(false, 0.1f, 2.0f);
-		AllParams[SP_Height] = new SParam(false, 1.0f, 20.0f);
-		AllParams[SP_Scale] = new SParam(false, 0.1f, 1.5f);
-		AllParams[SP_SplitAngle] = new SParam(false, 0.1f, MATH_FLOAT_PI / 2);
+		AllParams[SP_Height] = new SParam(false, 0.2f, 20.0f);
+		AllParams[SP_Scale] = new SParam(false, 0.1f, .98f);
+		AllParams[SP_SplitAngle] = new SParam(false, 0.1f, MATH_FLOAT_PI/4);
 		AllParams[SP_BranchR] = new SParam(true, 0.0f, 255.0f);
 		AllParams[SP_BranchG] = new SParam(true, 0.0f, 255.0f);
 		AllParams[SP_BranchB] = new SParam(true, 0.0f, 255.0f);
 		AllParams[SP_LeafR] = new SParam(true, 0.0f, 255.0f);
 		AllParams[SP_LeafG] = new SParam(true, 0.0f, 255.0f);
 		AllParams[SP_LeafB] = new SParam(true, 0.0f, 255.0f);
+		AllParams[SP_LeafSize] = new SParam(false, 0.5f, 2.0f);
 
 		// Initialize variances to 1
 		for (int i = 0; i < SP_Count; i++)
 		{
 			paramVariances[i] = 1.0f;
-			paramMeans[i] = AllParams[i]->generateUniform(unitUniformDistribution(randomGenerator));
+			paramMeans[i] = AllParams[i]->generateUniform(static_cast <float> (rand()) / static_cast <float> (RAND_MAX));//unitUniformDistribution(randomGenerator));
+			//nSavedChoices = 0.0f;
+			onlineDelta[i] = 0.0f;
+			onlineDeltaN[i] = 0.0f;
+			onlineMean[i] = 0.0f;
+			onlineDelta2[i] = 0.0f;
+			onlineM2Right[i] = 0.0f;
+			onlineM2[i] = 0.0f;
 		}
 	}
 

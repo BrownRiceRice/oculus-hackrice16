@@ -46,6 +46,8 @@
     <ClCompile Include="..\..\..\..\CommonSrc\Render\Render_Device.cpp">
       <Filter>CommonSrc\Render</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\RockObject.cpp" />
+    <ClCompile Include="..\..\..\SceneObjects\SceneParams.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\OculusWorldDemo.h" />
@@ -94,6 +96,11 @@
     <ClInclude Include="..\..\..\..\CommonSrc\Render\Render_Device.h">
       <Filter>CommonSrc\Render</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\RockObject.h" />
+    <ClInclude Include="..\..\..\SceneObjects\AvailableParameters.h" />
+    <ClInclude Include="..\..\..\SceneObjects\SceneParams.h" />
+    <ClInclude Include="..\..\..\SceneObjects\SParam.h" />
+    <ClInclude Include="..\..\..\SceneObject.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\..\OculusWorldDemo.rc" />

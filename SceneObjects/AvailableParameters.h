@@ -26,6 +26,7 @@ namespace ParamWorld {
 		SP_LeafR,
 		SP_LeafG,
 		SP_LeafB,
+		SP_LeafSize,
 
 		// Total number of variables
 		SP_Count

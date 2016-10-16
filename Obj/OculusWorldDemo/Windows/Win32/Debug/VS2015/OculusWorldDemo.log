@@ -1,4 +1,7 @@
-﻿  OculusWorldDemo_Scene.cpp
+﻿  OculusWorldDemo.cpp
+  OculusWorldDemo_Scene.cpp
+  RockObject.cpp
+  Tracker.cpp
   TreeObject.cpp
   OculusWorldDemo.vcxproj -> C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Bin\Windows\Win32\Debug\VS2015\OculusWorldDemo.exe
   OculusWorldDemo.vcxproj -> C:\Program Files (x86)\Oculus\OculusSDK\Samples\OculusWorldDemo - Copy\Projects\Windows\VS2015\..\..\..\Bin\Windows\Win32\Debug\VS2015\OculusWorldDemo.pdb (Full PDB)

@@ -247,6 +247,8 @@
     <ClCompile Include="..\..\..\OculusWorldDemo.cpp" />
     <ClCompile Include="..\..\..\OculusWorldDemo_Scene.cpp" />
     <ClCompile Include="..\..\..\Player.cpp" />
+    <ClCompile Include="..\..\..\RockObject.cpp" />
+    <ClCompile Include="..\..\..\SceneObjects\SceneParams.cpp" />
     <ClCompile Include="..\..\..\Tracker.cpp" />
     <ClCompile Include="..\..\..\TreeObject.cpp" />
   </ItemGroup>
@@ -265,8 +267,13 @@
     <ClInclude Include="..\..\..\..\CommonSrc\Util\RenderProfiler.h" />
     <ClInclude Include="..\..\..\..\CommonSrc\Render\Render_XmlSceneLoader.h" />
     <ClInclude Include="..\..\..\..\CommonSrc\Util\StringHelper.h" />
+    <ClInclude Include="..\..\..\RockObject.h" />
     <ClInclude Include="..\..\..\OculusWorldDemo.h" />
     <ClInclude Include="..\..\..\Player.h" />
+    <ClInclude Include="..\..\..\SceneObject.h" />
+    <ClInclude Include="..\..\..\SceneObjects\AvailableParameters.h" />
+    <ClInclude Include="..\..\..\SceneObjects\SceneParams.h" />
+    <ClInclude Include="..\..\..\SceneObjects\SParam.h" />
     <ClInclude Include="..\..\..\Tracker.h" />
     <ClInclude Include="..\..\..\TreeObject.h" />
   </ItemGroup>

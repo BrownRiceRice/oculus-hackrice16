@@ -231,6 +231,10 @@ void OculusWorldDemoApp::AddMoreThings(float x, float z, Vector3f dirFacing) {
 			MainScene.World.Add(tree.ModelX);
 			MainScene.Models.push_back(tree.ModelX);
 			growingModels.push_back(tree.ModelX);
+			relevantObjects.push_back(tree);
+			if (relevantObjects.size() > 100) {
+				relevantObjects.erase(relevantObjects.begin());
+			}
 		}
 		else {
 			ParamWorld::RockObject rock(4, Color(150, 150, 150, 0), Vector2f(rootPos.x + 1.0f, rootPos.z), 
@@ -238,6 +242,7 @@ void OculusWorldDemoApp::AddMoreThings(float x, float z, Vector3f dirFacing) {
 			MainScene.World.Add(rock.ModelX);
 			MainScene.Models.push_back(rock.ModelX);
 			growingModels.push_back(rock.ModelX);
+
 		}
 	}
 	currentTrees += newThings;
@@ -253,7 +258,7 @@ void OculusWorldDemoApp::PopulateScene(const char *fileName)
 	MainScene.AddLight(Vector3f(0, 20, 0), Color4f(255, 255, 255, 255));
 	Ptr<Model> model = *new Model();
 
-	model->AddBox(Color(11, 7, 4), Vector3f(0.0f, 0.0f, 0.0f), Vector3f(200.0f, .01f, 200.0f));
+	model->AddBox(Color(11, 7, 4), Vector3f(0.0f, 0.0f, 0.0f), Vector3f(800.0f, .01f, 800.0f));
 	MainScene.World.Add(model);
 	MainScene.Models.push_back(model);
 
@@ -263,6 +268,14 @@ void OculusWorldDemoApp::PopulateScene(const char *fileName)
 	SkyScene.Models.push_back(sky);
 
     MainScene.SetAmbient(Color4f(1.0f, 1.0f, 1.0f, 1.0f));
+
+	// Trees to start
+	AddMoreThings(7, 0, Quatf(Axis_Y, ThePlayer.GetApparentBodyYaw().Get()).Rotate(Vector3f(1, 0, -1)));
+	AddMoreThings(7, 0, Quatf(Axis_Y, ThePlayer.GetApparentBodyYaw().Get()).Rotate(Vector3f(1, 0, 0)));
+	AddMoreThings(7, 0, Quatf(Axis_Y, ThePlayer.GetApparentBodyYaw().Get()).Rotate(Vector3f(1, 0, 1)));
+	AddMoreThings(7, 0, Quatf(Axis_Y, ThePlayer.GetApparentBodyYaw().Get()).Rotate(Vector3f(-1, 0, -1)));
+	AddMoreThings(7, 0, Quatf(Axis_Y, ThePlayer.GetApparentBodyYaw().Get()).Rotate(Vector3f(-1, 0, 0)));
+	AddMoreThings(7, 0, Quatf(Axis_Y, ThePlayer.GetApparentBodyYaw().Get()).Rotate(Vector3f(-1, 0, 1)));
 
     std::string mainFilePathNoExtension = MainFilePath;
     StripExtension(mainFilePathNoExtension);
@@ -398,10 +411,10 @@ void OculusWorldDemoApp::PlayerFireCube()
 	// Add cube
 	model->AddBox(0xFFFFFFFF, Vector3f(8.0f, 1.0f, -2.0f), Vector3f(cubeSize, cubeSize, cubeSize), Quatf(Axis_Z, .5));
 
-	ParamWorld::TreeObject tree(Vector3f(0.0f, 0.0f, 0.0f), 5, 1.0f, .05f, .7f, MATH_FLOAT_PI / 4, Color(12, 240, 45, 0), Color(240, 100, 100, 0));
-	MainScene.World.Add(tree.ModelX);
-	MainScene.Models.push_back(tree.ModelX);
-	growingModels.push_back(tree.ModelX);
+	//ParamWorld::TreeObject tree(Vector3f(0.0f, 0.0f, 0.0f), 5, 1.0f, .05f, .7f, MATH_FLOAT_PI / 4, Color(12, 240, 45, 0), Color(240, 100, 100, 0));
+	//MainScene.World.Add(tree.ModelX);
+	//MainScene.Models.push_back(tree.ModelX);
+	//growingModels.push_back(tree.ModelX);
 }
 
 

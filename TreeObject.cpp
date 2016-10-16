@@ -2,9 +2,10 @@
 
 using namespace ParamWorld;
 
-TreeObject::TreeObject(Vector3f root, int depth, float height, float width, 
-	    float scale, float angle, OVR::Color leafColor, 
-	    OVR::Color trunkColor): 
+TreeObject::TreeObject(Vector3f root, int depth, float height, float width,
+	float scale, float angle, OVR::Color leafColor,
+	OVR::Color trunkColor, float leafSize) :
+	SceneObject(nullptr, root),
 	_depth(depth),
 	_height(height),
 	_width(width),
@@ -12,6 +13,7 @@ TreeObject::TreeObject(Vector3f root, int depth, float height, float width,
 	_splitAngle(angle),
 	_leafColor(leafColor),
 	_trunkColor(trunkColor), 
+	_leafSize(leafSize),
 	ModelX(new Model())
 {	
 	initModels(root, Vector3f(width, height, width), depth, Quatf(0, 0, 0, 1));

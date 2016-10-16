@@ -47,6 +47,7 @@ limitations under the License.
 #include "Player.h"
 #include "Tracker.h"
 #include "SceneObjects\SceneParams.h"
+#include "SceneObject.h"
 
 #include <vector>
 #include <string>
@@ -137,6 +138,7 @@ public:
 	void         AddMoreThings(float x, float y, Vector3f dirFacing);
 	float        skyTurn = 0.0;
 	std::vector<Model *> growingModels;
+	std::vector<SceneObject> relevantObjects;
 	int timeToWait = 20;
 	int currentTrees = 0;
 	SceneParams sceneParams;

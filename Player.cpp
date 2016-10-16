@@ -95,20 +95,20 @@ bool Player::HandleMovement(double dt, std::vector<Ptr<CollisionModel> >* collis
     {
         if (MoveForward)
         {
-            controllerMove += ForwardVector;
+            controllerMove += (ForwardVector * 1.5);
         }
         else if (MoveBack)
         {
-            controllerMove -= ForwardVector;
+            controllerMove -= (ForwardVector * 1.5);
         }
 
         if (MoveRight)
         {
-            controllerMove += RightVector;
+            controllerMove += (RightVector * 1.5);
         }
         else if (MoveLeft)
         {
-            controllerMove -= RightVector;
+            controllerMove -= (RightVector * 1.5);
         }
     }
     else if (GamepadMove.LengthSq() > 0)
@@ -121,6 +121,7 @@ bool Player::HandleMovement(double dt, std::vector<Ptr<CollisionModel> >* collis
     {
         // Normalize vector so we don't move faster diagonally.
         controllerMove.Normalize();
+		controllerMove *= 2;
         controllerMove *= OVR::Alg::Min<float>(MoveSpeed * (float)dt * (shiftDown ? 3.0f : 1.0f), 1.0f);
     }
 

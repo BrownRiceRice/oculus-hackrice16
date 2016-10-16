@@ -57,15 +57,6 @@ const float		MoveSpeed	= 3.0f; // m/s
 const float		RailHeight	= 0.8f;
 
 
-class GridIndex
-{
-public:
-	const int x;
-	const int z;
-
-	GridIndex(int newX, int newZ) : x(newX), z(newZ) {}
-};
-
 namespace std
 {
 	template <>
@@ -133,7 +124,7 @@ public:
         BodyPoseFloorLevel = BodyPos;
         // floor level height is *always* ProfileStandingEyeHeight from BodyPos.y
         BodyPoseFloorLevel.y = BodyPos.y - (ProfileStandingEyeHeight * HeightScale);
-		Vector2i gridPos = Vector2i((int)BodyPos.x /2, (int)(BodyPos.z/2));
+		Vector2i gridPos = Vector2i((int)BodyPos.x/5, (int)(BodyPos.z/5));
 		bool v = visited.find(gridPos) == visited.end();
 		visited.insert(gridPos);
 		return v;

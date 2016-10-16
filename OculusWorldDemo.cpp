@@ -142,6 +142,7 @@ OculusWorldDemoApp::OculusWorldDemoApp() :
 	MainScene(),
 	SkyScene(),
 	sceneParams(),
+	relevantObjects(),
     SmallGreenCube(),
     SmallOculusCube(),
     SmallOculusGreenCube(),
@@ -2205,6 +2206,19 @@ void OculusWorldDemoApp::OnIdle()
 		Vector3f pos = ThePlayer.GetBodyPos(TrackingOriginType);
 		//AddMoreFloor((int) pos.x, (int)pos.z);
 		AddMoreThings(pos.x, pos.z, Quatf(Axis_Y, ThePlayer.GetApparentBodyYaw().Get()).Rotate(Vector3f(0, 0, -1)));
+	}
+
+	// Position of the torso compared to every relevant thing.
+	Vector3f pos = ThePlayer.GetBodyPos(TrackingOriginType);
+	for (std::vector<SceneObject>::iterator itt = relevantObjects.begin(); itt < relevantObjects.end();) {
+		if ((*itt).rootPosition.Distance(pos) < 2) {
+			WriteLog("Learn this!");
+			sceneParams.moveMeans((*itt).params, true);
+		    itt = relevantObjects.erase(itt);
+		}
+		else {
+			++itt;
+		}
 	}
 
     // Find the pose of the player's torso (rather than their head) in the world.

@@ -7,9 +7,6 @@
     <ClCompile Include="..\..\..\..\CommonSrc\Render\Render_D3D11_Device.cpp">
       <Filter>CommonSrc\Render</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\CommonSrc\Render\Render_Device.cpp">
-      <Filter>CommonSrc\Render</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\CommonSrc\Render\Render_GL_Device.cpp">
       <Filter>CommonSrc\Render</Filter>
     </ClCompile>
@@ -45,14 +42,15 @@
     <ClCompile Include="..\..\..\..\CommonSrc\Util\StringHelper.cpp">
       <Filter>CommonSrc\Util</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\TreeObject.cpp" />
+    <ClCompile Include="..\..\..\..\CommonSrc\Render\Render_Device.cpp">
+      <Filter>CommonSrc\Render</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\OculusWorldDemo.h" />
     <ClInclude Include="..\..\..\Player.h" />
     <ClInclude Include="..\..\..\..\CommonSrc\Render\Render_D3D11_Device.h">
-      <Filter>CommonSrc\Render</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\CommonSrc\Render\Render_Device.h">
       <Filter>CommonSrc\Render</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\CommonSrc\Render\Render_Font.h">
@@ -91,6 +89,10 @@
     <ClInclude Include="..\..\..\Tracker.h" />
     <ClInclude Include="..\..\..\..\CommonSrc\Util\StringHelper.h">
       <Filter>CommonSrc\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\TreeObject.h" />
+    <ClInclude Include="..\..\..\..\CommonSrc\Render\Render_Device.h">
+      <Filter>CommonSrc\Render</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

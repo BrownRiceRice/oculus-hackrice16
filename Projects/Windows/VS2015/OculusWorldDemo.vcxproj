@@ -233,11 +233,11 @@
     <ClCompile Include="..\..\..\..\CommonSrc\Platform\Platform.cpp" />
     <ClCompile Include="..\..\..\..\CommonSrc\Platform\Win32_Gamepad.cpp" />
     <ClCompile Include="..\..\..\..\CommonSrc\Platform\Win32_Platform.cpp" />
+    <ClCompile Include="..\..\..\..\CommonSrc\Render\Render_Device.cpp" />
     <ClCompile Include="..\..\..\..\CommonSrc\Render\Render_GL_Device.cpp" />
     <ClCompile Include="..\..\..\..\CommonSrc\Render\Render_GL_Win32_Device.cpp" />
     <ClCompile Include="..\..\..\..\CommonSrc\Render\Render_LoadTextureDDS.cpp" />
     <ClCompile Include="..\..\..\..\CommonSrc\Render\Render_LoadTextureTGA.cpp" />
-    <ClCompile Include="..\..\..\..\CommonSrc\Render\Render_Device.cpp" />
     <ClCompile Include="..\..\..\..\CommonSrc\Render\Render_D3D11_Device.cpp" />
     <ClCompile Include="..\..\..\..\..\3rdParty\TinyXml\tinyxml2.cpp" />
     <ClCompile Include="..\..\..\..\CommonSrc\Render\Render_XmlSceneLoader.cpp" />
@@ -248,6 +248,7 @@
     <ClCompile Include="..\..\..\OculusWorldDemo_Scene.cpp" />
     <ClCompile Include="..\..\..\Player.cpp" />
     <ClCompile Include="..\..\..\Tracker.cpp" />
+    <ClCompile Include="..\..\..\TreeObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\CommonSrc\Platform\Gamepad.h" />
@@ -255,8 +256,8 @@
     <ClInclude Include="..\..\..\..\CommonSrc\Platform\Platform_Default.h" />
     <ClInclude Include="..\..\..\..\CommonSrc\Platform\Win32_Gamepad.h" />
     <ClInclude Include="..\..\..\..\CommonSrc\Platform\Win32_Platform.h" />
-    <ClInclude Include="..\..\..\..\CommonSrc\Render\Render_Font.h" />
     <ClInclude Include="..\..\..\..\CommonSrc\Render\Render_Device.h" />
+    <ClInclude Include="..\..\..\..\CommonSrc\Render\Render_Font.h" />
     <ClInclude Include="..\..\..\..\CommonSrc\Render\Render_D3D11_Device.h" />
     <ClInclude Include="..\..\..\..\CommonSrc\Render\Render_GL_Device.h" />
     <ClInclude Include="..\..\..\..\CommonSrc\Render\Render_GL_Win32_Device.h" />
@@ -267,6 +268,7 @@
     <ClInclude Include="..\..\..\OculusWorldDemo.h" />
     <ClInclude Include="..\..\..\Player.h" />
     <ClInclude Include="..\..\..\Tracker.h" />
+    <ClInclude Include="..\..\..\TreeObject.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\..\OculusWorldDemo.rc" />

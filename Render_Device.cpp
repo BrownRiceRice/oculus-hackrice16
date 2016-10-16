@@ -21,8 +21,8 @@ limitations under the License.
 
 ************************************************************************************/
 
-#include "../Render/Render_Device.h"
-#include "../Render/Render_Font.h"
+#include "Render_Device.h"
+#include "Render_Font.h"
 
 
 namespace OVR { namespace Render {
@@ -276,7 +276,7 @@ namespace OVR { namespace Render {
 		}
 		
 		uint16_t i = GetNextVertexIndex();
-		AddVertex(vs[0].x, vs[0].y, vs[0].z, c, 1, 0, 0, 0, -1);
+		AddVertex(vs[0].x, vs[0].y, vs[0].z, c, 1, 0, 1, 0, -1);
 		AddVertex(vs[1].x, vs[1].y, vs[1].z, c, 0, 0, 0, 0, -1);
 		AddVertex(vs[3].x, vs[3].y, vs[3].z, c, 0, 1, 0, 0, -1);
 		AddVertex(vs[2].x, vs[2].y, vs[2].z, c, 1, 1, 0, 0, -1);
@@ -325,7 +325,7 @@ namespace OVR { namespace Render {
         Vector3f s = size * 0.5f;
         Vector3f o = origin;
         uint16_t i = GetNextVertexIndex();
-
+		
         AddVertex(-s.x + o.x,  s.y + o.y, -s.z + o.z,  c, 1, 0, 0, 0, -1);
         AddVertex(s.x  + o.x,  s.y + o.y, -s.z + o.z,  c, 0, 0, 0, 0, -1);
         AddVertex(s.x  + o.x, -s.y + o.y, -s.z + o.z,  c, 0, 1, 0, 0, -1);
@@ -368,6 +368,20 @@ namespace OVR { namespace Render {
         AddTriangle(20 + i, 21 + i, 22 + i);
         AddTriangle(22 + i, 23 + i, 20 + i);
     }
+
+	void Model::AddTetra(Color color, Vector3f top, Vector3f l, Vector3f r, Vector3f b) {
+		uint16_t i = GetNextVertexIndex();
+
+		AddVertex(top.x, top.y, top.z, color, 0, 0, 0, 0, 1);
+		AddVertex(l.x, l.y, l.z, color, 0, 0, 0, 0, 1);
+		AddVertex(r.x, r.y, r.z, color, 0, 0, 0, 0, 1);
+		AddVertex(b.x, b.y, b.z, color, 0, 0, 0, 0, 1);
+		AddTriangle(0 + i, 1 + i, 2 + i);
+		AddTriangle(0 + i, 2 + i, 3 + i);
+		AddTriangle(0 + i, 3 + i, 1 + i);
+		AddTriangle(1 + i, 3 + i, 2 + i);
+
+	}
 
 
     Model* Model::CreateBox(Color c, Vector3f origin, Vector3f size)

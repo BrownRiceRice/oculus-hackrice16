@@ -83,63 +83,64 @@ const bool OculusWorldDemoApp::UseDepth[OculusWorldDemoApp::Rendertarget_LAST] =
 // ***** OculusWorldDemoApp
 
 OculusWorldDemoApp::OculusWorldDemoApp() :
-    pRender(0),
-    RenderParams(),
-    WindowSize(1280,800),
-    HmdDisplayAcquired(false),
-    FirstScreenInCycle(0),
-    SupportsSrgbSwitching(true),        // May be proven false below.
-    SupportsMultisampling(true),        // May be proven false below.
-    SupportsDepthMultisampling(true),   // May be proven false below.
-    ActiveGammaCurve(1.0f),
-    SrgbGammaCurve(2.2f),
-    MirrorIsSrgb(false),
-    EyeTextureFormat(EyeTextureFormat_RGBA8_SRGB),
-    TrackingOriginType(ovrTrackingOrigin_FloorLevel),
-    MenuUserEyeHeight(1.6f),    // initialized from profile later
+	pRender(0),
+	RenderParams(),
+	WindowSize(1280, 800),
+	HmdDisplayAcquired(false),
+	FirstScreenInCycle(0),
+	SupportsSrgbSwitching(true),        // May be proven false below.
+	SupportsMultisampling(true),        // May be proven false below.
+	SupportsDepthMultisampling(true),   // May be proven false below.
+	ActiveGammaCurve(1.0f),
+	SrgbGammaCurve(2.2f),
+	MirrorIsSrgb(false),
+	EyeTextureFormat(EyeTextureFormat_RGBA8_SRGB),
+	TrackingOriginType(ovrTrackingOrigin_FloorLevel),
+	MenuUserEyeHeight(1.6f),    // initialized from profile later
 
-    //RenderTargets()
-    //MsaaRenderTargets()
-    //DrawEyeTargets(),
-    Session(0),
-    HmdDesc(),
-    //EyeRenderDesc[2];
-    //Projection[2];          // Projection matrix for eye.
-    //OrthoProjection[2];     // Projection for 2D.
-    //EyeRenderPose[2];       // Poses we used for rendering.
-    //EyeTexture[2];
-    //EyeRenderSize[2];       // Saved render eye sizes; base for dynamic sizing.
-    UsingDebugHmd(false),
+	//RenderTargets()
+	//MsaaRenderTargets()
+	//DrawEyeTargets(),
+	Session(0),
+	HmdDesc(),
+	//EyeRenderDesc[2];
+	//Projection[2];          // Projection matrix for eye.
+	//OrthoProjection[2];     // Projection for 2D.
+	//EyeRenderPose[2];       // Poses we used for rendering.
+	//EyeTexture[2];
+	//EyeRenderSize[2];       // Saved render eye sizes; base for dynamic sizing.
+	UsingDebugHmd(false),
 
-    SecondsOfFpsMeasurement(1.0f),
-    FrameCounter(0),
-    TotalFrameCounter(0),
-    SecondsPerFrame(0.f),
-    FPS(0.f),
-    LastFpsUpdate(0.0),
-    LastUpdate(0.0),
+	SecondsOfFpsMeasurement(1.0f),
+	FrameCounter(0),
+	TotalFrameCounter(0),
+	SecondsPerFrame(0.f),
+	FPS(0.f),
+	LastFpsUpdate(0.0),
+	LastUpdate(0.0),
 
-    MainFilePath(),
-    CollisionModels(),
-    GroundCollisionModels(),
+	MainFilePath(),
+	CollisionModels(),
+	GroundCollisionModels(),
 
-    LoadingState(LoadingState_Frame0),
+	LoadingState(LoadingState_Frame0),
 
-    InteractiveMode(true),
-    HaveVisionTracking(false),
-    HavePositionTracker(false),
-    HaveHMDConnected(false),
-    HaveSync(true),
+	InteractiveMode(true),
+	HaveVisionTracking(false),
+	HavePositionTracker(false),
+	HaveHMDConnected(false),
+	HaveSync(true),
 
-    Recording(false),
-    Replaying(false),
-    LastSyncTime(0.0),
+	Recording(false),
+	Replaying(false),
+	LastSyncTime(0.0),
 
-    LastControllerState(),
-    LastControllerType(ovrControllerType_None),
+	LastControllerState(),
+	LastControllerType(ovrControllerType_None),
 
-    ThePlayer(),
-    MainScene(),
+	ThePlayer(),
+	MainScene(),
+	SkyScene(),
     SmallGreenCube(),
     SmallOculusCube(),
     SmallOculusGreenCube(),
@@ -1622,7 +1623,7 @@ void OculusWorldDemoApp::OnMouseMove(int x, int y, int modifiers)
 
 void OculusWorldDemoApp::OnKey(OVR::KeyCode key, int chr, bool down, int modifiers)
 {
-	WriteLog("Key pressed: %d\n", key);
+	//WriteLog("Key pressed: %d\n", key);
     if (Menu.OnKey(key, chr, down, modifiers))
         return;
 
@@ -1661,13 +1662,12 @@ void OculusWorldDemoApp::OnKey(OVR::KeyCode key, int chr, bool down, int modifie
         break;
 
     case Key_Space:
-        /*if (!down)
+        if (!down)
         {
-            TextScreen = (TextScreenType)((TextScreen + 1) % Text_Count);
-        }*/
-		WriteLog("Space pressed! Should call fire!");
-		this->PlayerFireCube();
-
+            //TextScreen = (TextScreenType)((TextScreen + 1) % Text_Count);
+			WriteLog("Space pressed! Should call fire!");
+			this->PlayerFireCube();
+        }
         break;
 
     // Distortion correction adjustments
@@ -2003,6 +2003,25 @@ void handleHaptics(ovrSession Session, const ovrInputState LastInputState, const
 
 void OculusWorldDemoApp::OnIdle()
 {
+	std::vector<Model *>::iterator it = growingModels.begin();
+	if (timeToWait <= 0) {
+		while (it != growingModels.end()) {
+			bool didChange = (*it)->incAlphas();
+			if (!didChange) {
+				WriteLog("Removing something from growing models!");
+				it = growingModels.erase(it);
+			}
+			else {
+				++it;
+			}
+		}
+		timeToWait = 5;
+		WriteLog("incremented Alphas");
+	}
+	else {
+		timeToWait--;
+	}
+
     // Check to see if we are being asked to quit.
     ovrSessionStatus sessionStatus = {};
     ovr_GetSessionStatus(Session, &sessionStatus);
@@ -2178,7 +2197,14 @@ void OculusWorldDemoApp::OnIdle()
 
     // Movement/rotation with the gamepad.
     ThePlayer.BodyYaw -= ThePlayer.GamepadRotate.x * dt;
-    ThePlayer.HandleMovement(dt, &CollisionModels, &GroundCollisionModels, ShiftDown);
+    bool newGrid = ThePlayer.HandleMovement(dt, &CollisionModels, &GroundCollisionModels, ShiftDown);
+	if (newGrid) {
+		// Draw more floor underneath you.
+		WriteLog("New grid");
+		Vector3f pos = ThePlayer.GetBodyPos(TrackingOriginType);
+		//AddMoreFloor((int) pos.x, (int)pos.z);
+		AddMoreThings(pos.x, pos.z, Quatf(Axis_Y, ThePlayer.GetApparentBodyYaw().Get()).Rotate(Vector3f(0, 0, -1)));
+	}
 
     // Find the pose of the player's torso (rather than their head) in the world.
     // Literally, this is the pose of the middle eye if they were sitting still and upright, facing forwards.
@@ -2191,34 +2217,7 @@ void OculusWorldDemoApp::OnIdle()
 
     // This scene is so simple, it really doesn't stress the GPU or CPU out like a real game would.
     // So to simulate a more complex scene, each eye buffer can get rendered lots and lots of times.
-
-    int totalSceneRenderCount;
-    switch ( SceneRenderCountType )
-    {
-    case SceneRenderCount_FixedLow:
-        totalSceneRenderCount = SceneRenderCountLow;
-        break;
-    case SceneRenderCount_SineTenSec: {
-        float phase = (float)( fmod ( ovr_GetTimeInSeconds() * 0.1, 1.0 ) );
-        totalSceneRenderCount = (int)( 0.49f + SceneRenderCountLow + ( SceneRenderCountHigh - SceneRenderCountLow ) * 0.5f * ( 1.0f + sinf ( phase * 2.0f * MATH_FLOAT_PI ) ) );
-                                        } break;
-    case SceneRenderCount_SquareTenSec: {
-        float phase = (float)( fmod ( ovr_GetTimeInSeconds() * 0.1, 1.0 ) );
-        totalSceneRenderCount = ( phase > 0.5f ) ? SceneRenderCountLow : SceneRenderCountHigh;
-                                        } break;
-    case SceneRenderCount_Spikes: {
-        static int notRandom = 634785346;
-        notRandom *= 543585;
-        notRandom += 782353;
-        notRandom ^= notRandom >> 17;
-        // 0x1311 has 5 bits set = one frame in 32 on average. Simlates texture loading or other real-world mess.
-        totalSceneRenderCount = ( ( notRandom & 0x1311 ) == 0 ) ? SceneRenderCountHigh : SceneRenderCountLow;
-                                    } break;
-    default:
-         OVR_ASSERT ( false );
-         totalSceneRenderCount = SceneRenderCountLow;
-         break;
-    }
+    int totalSceneRenderCount = SceneRenderCountLow;
 
     ovrResult error = ovrSuccess;
 
@@ -3296,6 +3295,8 @@ void OculusWorldDemoApp::RenderEyeView(ovrEyeType eye)
 				pRender->SetDepthMode(true, true);
 			}
 
+			skyTurn += .00002f;
+			SkyScene.Render(pRender, ViewFromWorld[eye] * Matrix4f::RotationX(skyTurn));
 
 
 			//Draw sensor
@@ -3310,12 +3311,6 @@ void OculusWorldDemoApp::RenderEyeView(ovrEyeType eye)
             {
                 if (TrackingTrackerCount == ConnectedTrackerCount)
                 {
-					//for ( int ii = 0; ii < GreenCubesScene.Models; )
-					Vector3f pos = GreenCubesScene.World.Nodes.at(0)->GetPosition();
-					WriteLog("First model in cube scene: %f %f %f", pos.x, pos.y, pos.z);
-					Vector4f betterPos(pos, 1);
-					Vector4f abspos = (baseTranslate * baseYaw).Transform(betterPos);
-					WriteLog("First model in cube scene abs: %f %f %f %f", abspos.x, abspos.y, abspos.z, abspos.w);
                     GreenCubesScene.Render(pRender, ViewFromWorld[eye] * baseTranslate * baseYaw);
                 }
                 else

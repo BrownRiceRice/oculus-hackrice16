@@ -35,7 +35,7 @@ limitations under the License.
 #include "Extras/OVR_Math.h"
 
 #include "../CommonSrc/Platform/Platform_Default.h"
-#include "Render_Device.h"
+#include "../CommonSrc/Render/Render_Device.h"
 #include "../CommonSrc/Render/Render_XmlSceneLoader.h"
 #include "../CommonSrc/Platform/Gamepad.h"
 #include "../CommonSrc/Util/OptionMenu.h"
@@ -132,6 +132,12 @@ public:
 
 	// Our Player code
 	void		 PlayerFireCube();
+	void         AddMoreFloor(int x, int z);
+	void         AddMoreThings(float x, float y, Vector3f dirFacing);
+	float        skyTurn = 0.0;
+	std::vector<Model *> growingModels;
+	int timeToWait = 20;
+	int currentTrees = 0;
 
     // Computes all of the Hmd values and configures render targets.
     ovrResult    CalculateHmdValues();
@@ -304,6 +310,7 @@ protected:
     Player				ThePlayer;
     Matrix4f            ViewFromWorld[2];   // One per eye.
     Scene               MainScene;
+	Scene               SkyScene;
     Scene               SmallGreenCube;
     Scene               SmallOculusCube;
     Scene               SmallOculusGreenCube;

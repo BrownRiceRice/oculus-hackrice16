@@ -34,9 +34,10 @@ limitations under the License.
 #include "Extras/OVR_Math.h"
 
 #include "Kernel/OVR_KeyCodes.h"
-#include "Render_Device.h"
+#include "../CommonSrc/Render/Render_Device.h"
 
 #include <vector>
+#include <unordered_set>
 #include <string>
 
 using namespace OVR;
@@ -54,6 +55,31 @@ const float		MoveSpeed	= 3.0f; // m/s
 
 // These are used for collision detection
 const float		RailHeight	= 0.8f;
+
+
+class GridIndex
+{
+public:
+	const int x;
+	const int z;
+
+	GridIndex(int newX, int newZ) : x(newX), z(newZ) {}
+};
+
+namespace std
+{
+	template <>
+	struct hash<Vector2i>
+	{
+		size_t operator()(Vector2i const & x) const noexcept
+		{
+			return (
+				(51 + std::hash<int>()(x.x)) * 51
+				+ std::hash<int>()(x.y)
+				);
+		}
+	};
+}
 
 
 //-------------------------------------------------------------------------------------
@@ -74,7 +100,8 @@ public:
     // Handle directional movement. Returns 'true' if movement was processed.
     bool    HandleMoveKey(OVR::KeyCode key, bool down);
 
-    void    HandleMovement(double dt, std::vector<Ptr<CollisionModel> >* collisionModels,
+	// Returns true if the player has traveled to a new grid space.
+    bool    HandleMovement(double dt, std::vector<Ptr<CollisionModel> >* collisionModels,
                                       std::vector<Ptr<CollisionModel> >* groundCollisionModels, bool shiftDown);
 
     // Accounts for ComfortTurn setting.
@@ -96,7 +123,7 @@ public:
         return headDistance * HeightScale;
     }
 
-    void    SetBodyPos(Vector3f newBodyPos, bool addUserStandingEyeHeight)
+    bool    SetBodyPos(Vector3f newBodyPos, bool addUserStandingEyeHeight)
     {
         BodyPos = newBodyPos;
         if (addUserStandingEyeHeight)
@@ -106,6 +133,10 @@ public:
         BodyPoseFloorLevel = BodyPos;
         // floor level height is *always* ProfileStandingEyeHeight from BodyPos.y
         BodyPoseFloorLevel.y = BodyPos.y - (ProfileStandingEyeHeight * HeightScale);
+		Vector2i gridPos = Vector2i((int)BodyPos.x /2, (int)(BodyPos.z/2));
+		bool v = visited.find(gridPos) == visited.end();
+		visited.insert(gridPos);
+		return v;
     }
 
     float GetScaledProfileEyeHeight()
@@ -167,6 +198,9 @@ private:
     Vector3f    BodyPoseFloorLevel;
 
     float       HeightScale;
+
+	// The set of all grid spaces that the player has visited. Kept at 1m intervals.
+	std::unordered_set<Vector2i> visited;
 };
 
 #endif // OVR_Player_h

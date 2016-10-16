@@ -11,23 +11,27 @@ TreeObject::TreeObject(Vector3f root, int depth, float height, float width,
 	_scale(scale),
 	_splitAngle(angle),
 	_leafColor(leafColor),
-	_trunkColor(trunkColor)
+	_trunkColor(trunkColor), 
+	ModelX(new Model())
 {	
-	initModels(root, Vector3f(height, width, width), depth, Quatf());
+	initModels(root, Vector3f(width, height, width), depth, Quatf(0, 0, 0, 1));
 }
 
 void TreeObject::initModels(Vector3f root, Vector3f dims, int depth, Quatf angleFromY) {
 	if (depth == 0) {
-		Model *level0 = new Model();
 		// Add one cube, the leaf color. Dimensions should be all the width, I guess.
-		level0->AddBox(_leafColor, root + angleFromY.Rotate(Vector3f(0, dims.y, 0)), Vector3f(dims.y * 2, dims.y * 2, dims.y * 2));
-		Models.push_back(level0);
+		ModelX->AddBox(_leafColor, root + angleFromY.Rotate(Vector3f(0, dims.x, 0)), Vector3f(dims.y * 2, dims.x * 2, dims.y * 2), angleFromY);
+		//WriteLog("Hit base case: new leaf at %f, %f, %f", root.x, root.y, root.z);
 	}
 	else {
-		Quatf left = Quatf(angleFromY.Rotate(Vector3f(0, 0, 1)), _splitAngle) * angleFromY;
-		Model *levelX = new Model();
-		levelX->AddBox(_trunkColor, root + angleFromY.Rotate(Vector3f(0, dims.y, 0)), dims);
-		Models.push_back(levelX);
-		initModels(root + angleFromY.Rotate(Vector3f(0, 1, 0)), dims, depth - 1, left);
+		Vector3f newZ = angleFromY.Rotate(Vector3f(0, 0, 1));
+		Vector3f newY = angleFromY.Rotate(Vector3f(0, 1, 0));
+		//Quatf left = Quatf((Quatf(newZ, _splitAngle) * angleFromY) , 0); // MATH_FLOAT_PI / 2);
+		ModelX->AddBox(_trunkColor, root + angleFromY.Rotate(Vector3f(0, dims.y / 2, 0)), dims, angleFromY);
+		Quatf left = Quatf(newZ, _splitAngle) * Quatf(newY, MATH_FLOAT_PI/2) * angleFromY;
+		Quatf right = Quatf(newZ, -_splitAngle) * Quatf(newY, -MATH_FLOAT_PI/2) * angleFromY;
+		Vector3f newRoot = root + angleFromY.Rotate(Vector3f(0, dims.y, 0));
+		initModels(newRoot, dims * _scale, depth - 1, left);
+		initModels(newRoot, dims * _scale, depth - 1, right);
 	}
 }

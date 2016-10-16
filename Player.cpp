@@ -83,16 +83,10 @@ Posef Player::VirtualWorldTransformfromRealPose(const Posef &sensorHeadPose, ovr
                  bodyPosInOrigin + baseQ.Rotate(sensorHeadPose.Translation));
 }
 
-void Player::HandleMovement(double dt, std::vector<Ptr<CollisionModel> >* collisionModels,
+// Returns true if the player has moved to a new grid square.
+bool Player::HandleMovement(double dt, std::vector<Ptr<CollisionModel> >* collisionModels,
 	                        std::vector<Ptr<CollisionModel> >* groundCollisionModels, bool shiftDown)
 {
-	// Handle Fire cube
-	if (Fire)
-	{
-		// Create cube
-		//OculusWorldDemo_Scene::PlayerFireCube()
-	}
-
     // Handle keyboard movement.
     // This translates BasePos based on the orientation and keys pressed.
     // Note that Pitch and Roll do not affect movement (they only affect view).
@@ -201,7 +195,7 @@ void Player::HandleMovement(double dt, std::vector<Ptr<CollisionModel> >* collis
         }
     }
     
-    SetBodyPos(BodyPos, false);
+    return SetBodyPos(BodyPos, false);
 }
 
 // Handle directional movement. Returns 'true' if movement was processed.
@@ -229,3 +223,4 @@ bool Player::HandleMoveKey(OVR::KeyCode key, bool down)
     default: return false;
     }
 }
+

@@ -1393,10 +1393,6 @@ ovrResult OculusWorldDemoApp::CalculateHmdValues()
     Projection[1] = ovrMatrix4f_Projection(EyeRenderDesc[1].Fov, NearClip, FarClip, projectionModifier);
     PosTimewarpProjectionDesc = ovrTimewarpProjectionDesc_FromProjection(Projection[0], projectionModifier);
 
-
-
-
-
     // all done
     HmdSettingsChanged = false;
 

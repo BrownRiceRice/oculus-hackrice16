@@ -284,7 +284,6 @@ void OculusWorldDemoApp::PopulateScene(const char *fileName)
     // Do the sound.
     PlaySound(TEXT("C:\\Program Files (x86)\\Oculus\\OculusSDK\\Samples\\OculusWorldDemo - Copy\\home.wav"), NULL, SND_FILENAME | SND_ASYNC);
 
-
     std::string mainFilePathNoExtension = MainFilePath;
     StripExtension(mainFilePathNoExtension);
 
@@ -375,54 +374,18 @@ void OculusWorldDemoApp::PopulateScene(const char *fileName)
 
     if (ovr_GetTrackerCount(Session) > 0)
     	PositionalTracker.Init(Session, mainFilePathNoExtension, pRender, SrgbRequested, AnisotropicSample);
-
-
 }
 
 
 void OculusWorldDemoApp::PlayerFireCube()
 {
-	/*if (growingModels.size() > 0) {
-		growingModels[0]->ClearRenderer();
-		growingModels[0]->SetVisible(false);
-		return;
-	}
-	*/
-
-	// 10x10x10 cubes.
 	float cubeSize = 1.0f;
 	
 	Ptr<Model> model = *new Model();
 	MainScene.World.Add(model);
 
-	// Cube texture
-	/*unsigned int fillTextureLoadFlags = 0;
-	fillTextureLoadFlags |= SrgbRequested ? TextureLoad_SrgbAware : 0;
-	fillTextureLoadFlags |= AnisotropicSample ? TextureLoad_Anisotropic : 0;
-
-	std::string mainFilePathNoExtension = MainFilePath;
-	StripExtension(mainFilePathNoExtension);
-	Ptr<Fill> fillR = *CreateTextureFill(pRender, mainFilePathNoExtension + "_OculusCube.tga", fillTextureLoadFlags);
-
-	//model->Fill = fillR.GetPtr();
-	*/
-
-
-	//model->AddBox(0x610000FF, Vector3f(4.0f, 2.5f, -2.0f), Vector3f(3.0f, .5f, .5f));
-	// Add truck
-	//model->AddBox(0x000000FF, Vector3f(8.0f, 1.0f, -2.0f), Vector3f(.5f, 3.0f, .5f));
-	// Add branch 1
-	//model->AddBox(0x000000FF, Vector3f(8.0f, 2.5f, -2.0f), Vector3f(3.0f, .5f, .5f));
-	// Add branch 2
-	
-
 	// Add cube
 	model->AddBox(0xFFFFFFFF, Vector3f(8.0f, 1.0f, -2.0f), Vector3f(cubeSize, cubeSize, cubeSize), Quatf(Axis_Z, .5));
-
-	//ParamWorld::TreeObject tree(Vector3f(0.0f, 0.0f, 0.0f), 5, 1.0f, .05f, .7f, MATH_FLOAT_PI / 4, Color(12, 240, 45, 0), Color(240, 100, 100, 0));
-	//MainScene.World.Add(tree.ModelX);
-	//MainScene.Models.push_back(tree.ModelX);
-	//growingModels.push_back(tree.ModelX);
 }
 
 
@@ -431,15 +394,12 @@ void OculusWorldDemoApp::PopulatePreloadScene()
     // Load-screen screen shot image
     std::string fileName = MainFilePath;
     StripExtension(fileName);
-
-    Ptr<File>    imageFile = *new SysFile((fileName + "_LoadScreen.tga").c_str());
-    if (imageFile->IsValid())
-        LoadingTexture = *LoadTextureTgaTopDown(pRender, imageFile, TextureLoad_SrgbAware | TextureLoad_SwapTextureSet, 255);
 }
 
 void OculusWorldDemoApp::ClearScene()
 {
     MainScene.Clear();
+	SkyScene.Clear();
     SmallGreenCube.Clear();
     SmallOculusCube.Clear();
     SmallOculusGreenCube.Clear();
